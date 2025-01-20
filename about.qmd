@@ -1,0 +1,66 @@
+---
+title: "About this website"
+number-sections: false
+---
+
+This is the website for the hands-on "R for Reproducibility" workshop taught at
+Ohio State University on February 11^th^, 2025.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Practical info about the workshop
+
+R is a programming language that is especially powerful for data exploration,
+visualization, and statistical analysis. 
+During this workshop, participants will learn the basics of R and RStudio,
+and how to use R for reproducible data manipulation and visualization.
+
+If you are affiliated with Ohio State University in any capacity,
+you can attend this workshop for free by
+[registering here](https://library.osu.edu/events/r-for-scientific-reproducibility-virtual-event-0).
+
+There are no prerequisites: this workshop is suitable for complete beginners
+in R and in coding in general.
+
+You can attend the workshop either online via Zoom or in-person at co-learning sites
+in Columbus or Wooster (information will be sent after registration).
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Instructors and organizers
+
+This workshop is taught by the organizers of [OSU Code Club](https://osu-codeclub.github.io):
+
+- **Horacio Lopez-Nicora** -- Assistant Professor in the department of [Plant Pathology](https://plantpath.osu.edu)
+- **Jelmer Poelstra** -- Bioinformatics & Microscopy Lead at the CFAES [Molecular and
+  Cellular Imaging Center (MCIC)](https://mcic.osu.edu)
+- **Jessica Cooperstone** -- Associate Professor in the departments of
+  [Horticulture & Crop Science](https://hcs.osu.edu), and [Food Science & Technology](https://fst.osu.edu)
+
+The following **helpers** will be assisisting participants:
+
+- Menuka Bhandari
+- Fiama Guevara-Guillen
+- Melanie Medina-Lopez
+- Dhanashree
+- Kelsey Badger
+- Matthew Thompson
+- ...
+
+This workshop is organized by **Kelsey Badger** at the
+[OSU Research Commons](https://library.osu.edu/researchcommons),
+Matthew Thompson and Elizabeth Campolongo at the
+[OSU Imageomics Institute](https://imageomics.osu.edu/),
+and the abovementioned instructors,
+and is part of
+[OSU's 2025 International Love Data Week activities](https://library.osu.edu/events/international-love-data-week-2025).
+
+**This is a [Carpentries](https://carpentries.org/) workshop.**
+The Carpentries project comprises the Software Carpentry, Data Carpentry,
+and Library Carpentry communities of Instructors, Trainers, Maintainers, helpers,
+and supporters who share a mission to teach foundational computational and
+data science skills to researchers.
+
+The material on this website has been adapted from the
+[R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/)
+Software Carpentry lesson.

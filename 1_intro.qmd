@@ -1,0 +1,11 @@
+---
+title: "Introduction to R and RStudio"
+author: "Software Carpentry / Horacio Lopez-Nicora"
+date: 2025-02-11
+editor_options: 
+  chunk_output_type: console
+---
+
+-------
+
+<br>

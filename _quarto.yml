@@ -1,0 +1,51 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "R Workshop"
+  site-url: https://jelmerp.github.io/XXX
+  repo-url: https://github.com/jelmerp/XXX
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    left:
+      - text: "0: Installation"
+        href: 0_setup.qmd
+      - text: "1: Intro"
+        href: 1_intro.qmd
+      - text: "2: Data Structures"
+        href: 2_data-structures.qmd
+      - text: "3: Data Manipulation"
+        href: 3_dplyr.qmd
+      - text: "4: Data Visualization"
+        href: 4_ggplot.qmd
+    right:
+      - text: To learn more
+        menu:
+        - text: OSU Code Club
+          href: https://osu-codeclub.github.io
+        - text: Sister workshop on Version Control with Git
+          href: https://library.osu.edu/events/version-control-with-git-virtual-event-0
+        - text: OSU Research Commons
+          href: https://library.osu.edu/researchcommons
+        - text: The Carpentries
+          href: https://carpentries.org
+      - text: About
+        href: about.qmd
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            url:  https://github.com/jelmerp/XXX
+          - text: Report an Issue
+            url:  https://github.com/jelmerp/XXX/issues/new
+format:
+  html:
+    theme: yeti
+    highlight-style: atom-one
+    css: styles.css
+    toc: true
+    number-sections: true
+    grid:
+      body-width: 800px

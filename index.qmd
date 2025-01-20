@@ -1,0 +1,25 @@
+---
+title: "Workshop on R for Reproducibility"
+subtitle: "February 11^th^, 9 am - 3 pm, Ohio State University"
+toc: false
+number-sections: false
+---
+
+------------------------------------------------------------------------
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Schedule
+
+| Time | Instructor | Topic & link |
+|----|----|----|
+| Before starting | \- | [Install and set up R and RStudio](0_setup.qmd) |
+| 9:00 - 9:20 am | all | Pre-workshop survey (if only attending today), intro, logistics |
+| **9:20 - 10:15 am** | **Horacio** | **1:** [**Introduction to R and RStudio**](1_intro.qmd) |
+| 10:15 - 10:30 am | \- | Break |
+| **10:30 - 11:30 am** | **Jelmer** | **2:** [**R data structures**](2_data-structures.qmd) |
+| 11:30 am - 12:15 pm | \- | Lunch |
+| **12:15 - 1:15 pm** | **Jelmer** | **3:** [**Data manipulation with *dplyr***](3_dplyr.qmd) |
+| 1:15 - 1:30 pm | \- | Break |
+| **1:30 - 2:50 pm** | **Jessica** | **4:** [**Visualization with *ggplot2***](4_ggplot.qmd) |
+| 2:50 - 3:00 pm | \- | Post-workshop survey |
