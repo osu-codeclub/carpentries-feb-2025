@@ -4,8 +4,8 @@ project:
 
 website:
   title: "R Workshop"
-  site-url: https://jelmerp.github.io/XXX
-  repo-url: https://github.com/jelmerp/XXX
+  site-url: https://osu-codeclub.github.io/carpentries-feb-2025/
+  repo-url: https://github.com/osu-codeclub/carpentries-feb-2025
   page-navigation: true
   back-to-top-navigation: true
   navbar:
@@ -37,9 +37,9 @@ website:
       - icon: github
         menu:
           - text: Source Code
-            url:  https://github.com/jelmerp/XXX
+            url:  https://github.com/osu-codeclub/carpentries-feb-2025
           - text: Report an Issue
-            url:  https://github.com/jelmerp/XXX/issues/new
+            url:  https://github.com/osu-codeclub/carpentries-feb-2025/issues/new?template=Blank+issue
 format:
   html:
     theme: yeti

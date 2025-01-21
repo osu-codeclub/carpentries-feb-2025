@@ -23,7 +23,7 @@ The “gg” in ggplot stands for “grammar of graphics” and all plots share 
 Simplified, we will provide to R:
 
 -   our data
--   mapping aesthetics - what connects the data to the graphics
+-   aesthetics mapped to variables - what connects the data to the graphics
 -   layers - determine which type of plot we are going to make, what cordinate system we will use, what scales we want, and other important aspects of our plot
 
 You can think about a ggplot as being composed of layers. You start with your data, and continue to add layers until you get the plot that you want. This might sound a bit abstract so I am going to talk through this with an example.
@@ -54,17 +54,21 @@ str(gapminder)
 
 `gapminder` is a tibble (very similar to a data frame), comprised of 1,704 rows and 6 columns. The columns are:
 
--   country (a factor)
--   continent (a factor)
--   year (an integer)
--   lifeExp (a number)
--   pop (an integer)
+-   `country` (a factor)
+-   `continent` (a factor)
+-   `year` (an integer)
+-   `lifeExp` (a number)
+-   `pop` (an integer)
 
 We are going to use the function `ggplot()` when we want to make a ggplot.
 
-> Note, the function is called ggplot and the package is called ggplot2
+::: {.callout-tip}
+## The function vs the package
 
-If we want to learn how the function works, we can use the `?` to find out more.
+Note, the function is called `ggplot()` and the package is called `ggplot2`.
+:::
+
+If we want to learn how the function works, we can use the `?` to find out more. Running the code below will open up the documentation page for the function `ggplot()` in the bottom right "Help" quadrant of RStudio.
 ```{r}
 ?ggplot()
 ```
@@ -88,9 +92,12 @@ gapminder %>%
   ggplot()
 ```
 
-> Note that both give you the same output.
+::: {.callout-note}
+`ggplot(data = gapminder)` and `gapminder %>% ggplot()` are the same thing.
+:::
 
-If we want to make a scatterplot to understand the relationship between GDP per capita and life expectancy, we can do so by setting `x` and `y` respectively within `aes()`, or our aesthetic mappings.
+
+If we want to make a scatterplot to understand the relationship between GDP per capita (i.e., `gdpPercap`) and life expectancy (i.e., `lifeExp`), we can do so by setting `x` and `y` respectively within `aes()`, or our aesthetic mappings.
 
 ```{r}
 gapminder %>%
@@ -99,22 +106,24 @@ gapminder %>%
 
 Ok! We don't have a plot, per se, but we have more than we had before. We can now see that `gdpPercap` is on the x-axis (along with some numbers reflecting the range of our data), and `lifeExp` is on the y-axis (along with some numbers reflecting the range of our data).
 
-> Note that the "mapping" part is actually not necessary.
+::: {.callout-note}
+Note that the "mapping" part is actually not necessary.
+:::
 
 ```{r}
 gapminder %>%
   ggplot(aes(x = gdpPercap, y = lifeExp))
 ```
 
-Now we need to tell R what geometry, or "geom" want to use. Let's make a scatterplot here.
+Now we need to tell R what geometry, or "geom" want to use. All of the "geoms" start with [`geom_*()`](https://ggplot2.tidyverse.org/reference/index.html#layers), and we can see what they all are by starting to type geom and pressing tab.
+
+Let's make a scatterplot here.
 
 ```{r}
 gapminder %>%
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 ```
-
-All of the "geoms" start with [`geom_*()`](https://ggplot2.tidyverse.org/reference/index.html#layers), and we can see what they all are by starting to type geom and pressing tab.
 
 -------
 
@@ -130,6 +139,8 @@ gapminder %>%
   ggplot(aes(x = year, y = lifeExp)) +
   geom_point()
 ```
+
+Note the plot looks a little weird since each point is a country, so for every year, we have an average life expectancy for each country.
 
 </details>
 
@@ -158,6 +169,8 @@ gapminder %>%
   ggplot(aes(x = year, y = lifeExp, color = continent)) + 
   geom_point()
 ```
+
+You can better see here that each point is actually a different country now that they are colored by continent.
 
 </details>
 
@@ -203,7 +216,6 @@ gapminder %>%
 
 We can see that now only the points are colored by continent, and the lines are all black (the default color for one group).
 
-> Note, the layers are added in the order you indicate, so if you change the order, your plot will change.
 
 -------
 
@@ -228,6 +240,10 @@ gapminder %>%
   geom_point() 
 ```
 
+::: {.callout-note}
+The layers are added in the order you indicate, so if you change the order, your plot will change. You can see because `geom_line()` comes below `geom_point()`, the lines are placed on top of the points.
+:::
+
 </details>
 
 -------
@@ -251,12 +267,12 @@ gapminder %>%
   scale_x_log10() # log 10 scales the x axis
 ```
 
-I can also make our points a little bit transparent to ease our overplotting problem (where too many point are on top of each other, making each point hard to see) by setting `alpha = `. Alpha ranges from 0 (totally transparent) to 1 (totally opaque). Note that I did not put  `alpha = 0.5` within an `aes()` - we are not mapping alpha to some variable, we are simply setting what alpha should be. 
+I can also make our points a little bit transparent to ease our overplotting problem (where too many point are on top of each other, making each point hard to see) by setting `alpha = `. Alpha ranges from 0 (totally transparent) to 1 (totally opaque). Note that I \put  `alpha = 0.5` **outside** the `aes()` function - we are not mapping alpha to some variable, we are simply **setting** what alpha should be. 
 ```{r}
 gapminder %>%
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
-  geom_point(alpha = 0.5) + # not inside the aes
-  scale_x_log10()
+  geom_point(alpha = 0.5) + # not inside aes
+  scale_x_log10() # log10 transform the x-axis
 ```
 
 Now we can better see the parts of the plot that are very dark are where there are a lot of data points.
@@ -270,16 +286,16 @@ gapminder %>%
   geom_smooth(method = "lm") # smooth with a linear model ie "lm"
 ```
 
-We can adjust the thickness of the line by setting `linewidth` within `geom_smooth()`.
+We can adjust the thickness of the line by setting `linewidth` within `geom_smooth()`, and turn off the confidence interval by setting `se = FALSE`. 
 ```{r}
 gapminder %>%
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point(alpha = 0.5) + # not inside the aes
   scale_x_log10() +
-  geom_smooth(method = "lm", linewidth = 3) # smooth with a linear model ie "lm"
+  geom_smooth(method = "lm", # smooth with a linear model ie "lm"
+              linewidth = 3, # increase thickness of the line
+              se = FALSE) # turn off plotting of a confident internal
 ```
-
-That's a ridiculously thick line.
 
 -------
 
@@ -304,7 +320,7 @@ The equivalent of `linewidth` for points is `size`.
 ```{r}
 gapminder %>%
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
-  geom_point(alpha = 0.5, color = "purple", size = 0.5) + # not inside the aes
+  geom_point(alpha = 0.5, color = "purple", size = 0.5) + # outside the aes
   scale_x_log10() +
   geom_smooth(method = "lm", linewidth = 1) 
 ```
@@ -331,20 +347,23 @@ The equivalent of `linewidth` for points is `size`.
 
 <details><summary>Click for the solution</summary>
 
-All points are now triangles.
+All points are now triangles. You can find info on the shape codes [here](https://www.datanovia.com/en/blog/pch-in-r-best-tips/).
 ```{r}
 gapminder %>%
   ggplot(aes(x = gdpPercap, y = lifeExp, color = continent)) +
-  geom_point(shape = 17, alpha = 0.5) + 
+  geom_point(shape = 17, # 17 is a closed triangle
+             alpha = 0.5) + 
   scale_x_log10() +
   geom_smooth(method = "lm", linewidth = 1) # smooth with a linear model ie "lm"
 ```
 
-All points are now open triangles, we are setting continent to `fill` and making the outline black.
+All points are now open triangles, we are setting continent to `fill` and making the outline black. Note that only shapes 21-25 can accept both a `color` (outside) and `fill` (inside). Otherwise, they only accept `color`.
 ```{r}
 gapminder %>%
   ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent)) +
-  geom_point(shape = 24, alpha = 0.5, color = "black") + 
+  geom_point(shape = 24, # open triangle
+             alpha = 0.5, 
+             color = "black") + # color controls outside, fill controls inside
   scale_x_log10() +
   geom_smooth(method = "lm", linewidth = 1) # smooth with a linear model ie "lm"
 ```
@@ -364,11 +383,11 @@ gapminder %>%
 
 ## Multi-panel figures
 
-[Small multiples](https://en.wikipedia.org/wiki/Small_multiple#:~:text=A%20small%20multiple%20(sometimes%20called,was%20popularized%20by%20Edward%20Tufte.) are a useful way to look at data across the same scale to understand patterns.
+[Small multiples](https://en.wikipedia.org/wiki/Small_multiple) are a useful way to look at data across the same scale to understand patterns.
 
 Let's say we want to understand how life expectancy changes over time throughout the Americas? Instead of making an individual plot for each country, we can use `facet_wrap()` to have `ggplot` make our plots all at once.
 
-First let's use what [Jelmer taught us](https://github.com/osu-codeclub/carpentries-aug-2024/wiki/2b_dplyr#filter-to-pick-rows-observations) to `filter` for only the observations from the Americas.
+First let's use what [Jelmer taught us](https://osu-codeclub.github.io/carpentries-feb-2025/3_dplyr.html#filter-to-pick-rows-observations) to `filter` for only the observations from the Americas.
 
 ```{r}
 gapminder_americas <- gapminder %>%
@@ -415,7 +434,7 @@ Often we want to take our plot we have made using R and save it for use someplac
 
 We can do this with more control using the function [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html). 
 
-First we will save our plot as an object using the assignment operator `<-`.
+First we will save our plot as an object using the assignment operator `<-`, here as `life_exp_americas_plot`.
 
 ```{r}
 life_exp_americas_plot <- gapminder_americas %>%
@@ -440,7 +459,9 @@ ggsave(filename = "results/lifeExp.png", # file path and name
        units = "cm") # units for width and height
 ```
 
-> Note to learn more about the arguments in `ggsave()` you can always run `?ggsave()`.
+::: {.callout-note}
+To learn more about the arguments in `ggsave()` you can always run `?ggsave()`.
+:::
 
 ### Challenge 5
 
