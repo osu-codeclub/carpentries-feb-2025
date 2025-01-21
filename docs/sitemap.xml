@@ -2,30 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://osu-codeclub.github.io/carpentries-feb-2025/0_setup.html</loc>
-    <lastmod>2025-01-21T17:02:57.351Z</lastmod>
+    <lastmod>2025-01-21T17:23:26.069Z</lastmod>
   </url>
   <url>
     <loc>https://osu-codeclub.github.io/carpentries-feb-2025/3_dplyr.html</loc>
-    <lastmod>2025-01-21T17:02:56.622Z</lastmod>
-  </url>
-  <url>
-    <loc>https://osu-codeclub.github.io/carpentries-feb-2025/index.html</loc>
-    <lastmod>2025-01-21T17:02:47.250Z</lastmod>
-  </url>
-  <url>
-    <loc>https://osu-codeclub.github.io/carpentries-feb-2025/2_data-structures.html</loc>
-    <lastmod>2025-01-21T17:02:46.575Z</lastmod>
-  </url>
-  <url>
-    <loc>https://osu-codeclub.github.io/carpentries-feb-2025/1_intro.html</loc>
-    <lastmod>2025-01-21T17:02:46.918Z</lastmod>
+    <lastmod>2025-01-21T17:23:25.343Z</lastmod>
   </url>
   <url>
     <loc>https://osu-codeclub.github.io/carpentries-feb-2025/4_ggplot.html</loc>
-    <lastmod>2025-01-21T17:02:54.545Z</lastmod>
+    <lastmod>2025-01-21T17:23:22.812Z</lastmod>
+  </url>
+  <url>
+    <loc>https://osu-codeclub.github.io/carpentries-feb-2025/1_intro.html</loc>
+    <lastmod>2025-01-21T17:23:12.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://osu-codeclub.github.io/carpentries-feb-2025/2_data-structures.html</loc>
+    <lastmod>2025-01-21T17:23:11.793Z</lastmod>
+  </url>
+  <url>
+    <loc>https://osu-codeclub.github.io/carpentries-feb-2025/index.html</loc>
+    <lastmod>2025-01-21T17:23:12.628Z</lastmod>
+  </url>
+  <url>
+    <loc>https://osu-codeclub.github.io/carpentries-feb-2025/readme.html</loc>
+    <lastmod>2025-01-21T17:23:23.087Z</lastmod>
   </url>
   <url>
     <loc>https://osu-codeclub.github.io/carpentries-feb-2025/about.html</loc>
-    <lastmod>2025-01-21T17:02:56.959Z</lastmod>
+    <lastmod>2025-01-21T17:23:25.694Z</lastmod>
   </url>
 </urlset>
