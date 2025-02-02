@@ -47,5 +47,6 @@ format:
     css: styles.css
     toc: true
     number-sections: true
+    number-depth: 3
     grid:
       body-width: 800px

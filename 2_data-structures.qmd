@@ -4,6 +4,7 @@ author: "Software Carpentry / Jelmer Poelstra"
 date: 2025-02-11
 editor_options: 
   chunk_output_type: console
+
 ---
 
 -----
@@ -11,6 +12,8 @@ editor_options:
 <br>
 
 ## Introduction
+
+#### What we'll cover
 
 In this session, we will learn about R's **data structures** and **data types**.
 
@@ -22,16 +25,17 @@ In this session, we will learn about R's **data structures** and **data types**.
   Here, we'll talk about the 4 main data types:
   `character`, `integer`, `double`, and `logical.`
 
-During this session,
-I will write my code in a script and send it to the console from there.
-So, I will start by opening a new script
-(`+` symbol in toolbar at the top => "R Script",
-_or_ "File" => "New file" => R Script"),
-and I will save it straight away as `data-structures.R` in a folder on my Desktop
-(create a new folder there or anywhere else for this workshop,
-if you haven't done so already).
+#### Setting up
 
-I will also change my Pane Layout to have the script and the console side-by-side.
+To make it easier to keep track of what we do,
+we will write our code in an script and send it to the console from there:
+
+1. _Open a new R script_ (Click the **`+`** symbol in toolbar at the top, then click `R Script`)
+   ^[Or Click `File` => `New file` => `R Script`]
+   
+2. _Save the script_ straight away as `data-structures.R` --
+   you can save it anywhere you like, though it is probably best to save it in a
+   folder specifically for this workshop.
 
 <br>
 
@@ -39,27 +43,29 @@ I will also change my Pane Layout to have the script and the console side-by-sid
 
 The first data structure we will explore is the simplest: the vector.
 A vector in R is essentially _a list of one or more items_.
-Moving forward, we'll call these individual items "elements".
+Moving forward, we'll call such individual items "elements".
 
 ### Single-element vectors and quoting
 
 Vectors can consist of just a single element,
-so in each of the two lines of code below, a vector is in fact created:
+so each of the two lines of code below creates a vector:
 
 ```{r}
 vector1 <- 8
 vector2 <- "panda"
 ```
 
-Two things are worth noting about the second example with a character string:
+Two things are worth noting about the `"panda"` example,
+which is a so-called **character string** (or _string_ for short):
 
-- "panda" constitutes one element, not 5 (its number of letters).
+- `"panda"` constitutes _one element_, not 5 (its number of letters).
+- Unlike when dealing with numbers, we have to _quote the string_.^[
+  Either double quotes (`"..."`) or single quotes (`'...'`) work,
+  but the former are most commonly used by convention.]
 
-- We have to quote the string
-  (either double or single quotes are fine, with the former more common).
-  This is because unquoted character strings are interpreted as R objects --
-  for example, `vector1` and `vector2` above are objects,
-  and should be referred to without quotes:
+Character strings need to be quoted because they are otherwise interpreted as
+R objects -- for example, because our vectors `vector1` and `vector2` are objects,
+we refer to them without quotes:
 
 ```{r}
 # [Note that R will show auto-complete options after you type 3 characters]
@@ -67,45 +73,47 @@ vector1
 vector2
 ```
 
-Conversely, the below doesn't work, because there is no _object called `panda`_:
+Therefore, the code below doesn't work, because there is no _object called `panda`_:
 
 ```{r, error=TRUE}
 vector_fail <- panda
 ```
 
-As a side note, in the R console,
-you can press the **up arrow** to retrieve the previous command,
+<hr style="height:1pt; visibility:hidden;" />
+
+::: callout-tip
+#### Use the up arrow to retrieve previous commands
+In the R console,
+you can press the **up arrow** <kbd>↑</kbd> to retrieve the previous command,
 and do so repeatedly to go back to older commands.
-Let's practice that to get back our `vector1` command:
+Let's practice that to retrieve our previous `vector1` command.
+:::
 
-```{r}
-vector1
-```
-
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ### Multi-element vectors
 
-A common way to make vectors with multiple elements is
-to use the `c` (combine) function:
+A common way to make vectors with **multiple elements** is
+by using the `c` (combine) function:
 
 ```{r}
 c(2, 6, 3)
 ```
 
-(In the above example, I didn't assign the vector to an object,
-but a vector was created nevertheless.)
-
-`c()` can also append elements to an existing vector:
+`c()` can also **append** elements to an existing vector:
 
 ```{r}
-vector_append <- c("vhagar", "meleys")
-vector_append
+# First we create a vector:
+vector_to_append <- c("vhagar", "meleys")
+vector_to_append
 
-c(vector_append, "balerion the dread")
+# Then we append another element to it:
+c(vector_to_append, "balerion the dread")
 ```
 
-To create vectors with series of numbers, a couple of shortcuts are available.
+<hr style="height:1pt; visibility:hidden;" />
+
+To create vectors with **series of numbers**, a couple of shortcuts are available.
 First, you can make series of whole numbers with the `:` operator:
 
 ```{r}
@@ -119,36 +127,38 @@ vector_seq <- seq(from = 6, to = 8, by = 0.2)
 vector_seq
 ```
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ### Vectorization
 
-In R, you can do the following:
+Consider the output of this command that seemingly multiplies a vector by two: 
 
 ```{r}
 vector_seq * 2
 ```
 
-Above, we multiplied every single element in `vector_seq` by 2.
-Another way of looking at this is that 2 was recycled as many times as necessary
-to operate on each element in `vector_seq`.
-We call this "vectorization" and this is a key feature of the R language.
-This behavior may seem intuitive,
-but in most languages you'd need a special construct like a loop to operate
+Above, **every individual element in `vector_seq` was multiplied by 2**.
+We call this behavior "vectorization" and this is a key feature of the R language^[
+In many other languages you'd need a special construct like a loop to operate
 on each value in a vector.
+].
 
-(Alternatively, you may have expected this code to _repeat_ `vector_seq` twice,
-but this did not happen! R has the function `rep()` for that.
+Alternatively, you may have expected this code to _repeat_ `vector_seq` twice,
+but this did not happen! (R has the function `rep()` for that.)
+
+::: callout-note
+### More about vectorization
 For more about vectorization, see
 [episode 9](https://swcarpentry.github.io/r-novice-gapminder/instructor/09-vectorization.html)
-from our Carpentries lesson.)
+from the Carpentries lesson that this material is based on.
+:::
 
 <br>
-<br>
 
--------
+::: exercise
+### {{< fa user-edit >}} Challenge 1 {-}
 
-### Challenge 1
+<hr style="height:1pt; visibility:hidden;" />
 
 **A.**
 Start by making a vector `x` with the whole numbers 1 through 26.
@@ -167,7 +177,7 @@ y
 
 </details>
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 **B.** 
 What do you think will be the result of the following operation?
@@ -189,6 +199,7 @@ the second element in the first vector will be multiplied with the second elemen
 in the second vector, and so on.
 
 </details>
+:::
 
 -------
 
@@ -199,27 +210,30 @@ in the second vector, and so on.
 R has many built-in functions to get information about vectors and other types of
 objects, such as:
 
-- `head()` and `tail()` to get the first few and last few elements, respectively:
+Get the **first and last few elements**, respectively, with `head()` and `tail()`:
 
 ```{r}
+# Print the first 6 elements:
 head(vector_seq)
 
 # Both head and tail take an argument `n` to specify the number of elements to print:
 head(vector_seq, n = 2)
+
+# Print the last 6 elements:
 tail(vector_seq)
 ```
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
-- `length()` to get the number of elements:
+Get the **number of elements** with `length()`:
 
 ```{r}
 length(vector_seq)
 ```
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
-- Functions like `sum()` and `mean()`, _if_ the vector contains numbers:
+Get **arithmetic summaries** like `sum()` and `mean()` for vectors with numbers:
 
 ```{r}
 # sum() will sum the values of all elements
@@ -233,35 +247,43 @@ mean(vector_seq)
 
 ### Extracting elements from vectors
 
-We can extract elements of a vector by "indexing" them using bracket notation.
-Here are a couple of examples:
+Extracting element from objects like vectors is often referred to as **"indexing"**.
+In R, we can do this using bracket notation -- for example:
 
 - Get the second element:
 
-```{r}
-vector_seq[2]
-```
+  ```{r}
+  vector_seq[2]
+  ```
 
-- Get the elements 2 through 5:
+- Get the second through the fifth elements:
 
-```{r}
-vector_seq[2:5]
-```
+  ```{r}
+  vector_seq[2:5]
+  ```
 
 - Get the first and eight elements:
 
-```{r}
-vector_seq[c(1, 8)]
-```
+  ```{r}
+  vector_seq[c(1, 8)]
+  ```
 
-To _change_ an element in a vector,
-use the bracket on the other side of the arrow:
+In the abstract, then, we can extract elements from a vector by using another vector,
+whose values are the positional indices of the elements in the original vector.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+::: callout-tip
+### Changing elements using indexing
+To _change_ elements in a vector,
+simply use the bracket on the other side of the arrow:
 
 ```{r}
 # Change the first element to '30':
 vector_seq[1] <- 30
 vector_seq
 ```
+:::
 
 <br>
 
@@ -269,42 +291,42 @@ vector_seq
 
 ### R stores tabular data in "data frames"
 
-One of R's most powerful features is its built-in ability to deal with tabular data --
-i.e., data with rows and columns like you are familiar with from spreadsheets.
+One of R's most powerful features is its **built-in ability to deal with tabular data** --
+i.e., data with rows and columns like you are familiar with from spreadsheets
+like those you create with Excel.
 
-In R, tabular data is stored in objects that are called "data frames".
-Data frames are the second and final R data structure that we'll cover in some depth.
-
-Let's start by making a toy data frame with some information about 3 cats:
+In R, tabular data is stored in objects that are called "**data frames**",
+the second R data structure we'll cover in some depth.
+Let's start by making a toy data frame with information about 3 cats:
 
 ```{r}
 cats <- data.frame(
+  name = c("Luna", "Thomas", "Daisy"),
   coat = c("calico", "black", "tabby"),
-  weight = c(2.1, 5.0, 3.2),
-  likes_string = c(1, 0, 1)
+  weight = c(2.1, 5.0, 3.2)
   )
 
 cats
 ```
 
-What we really did above is to create 4 vectors, all of length 3,
-and pasted them side-by-side to create a data frame.
-We also gave each vector a name, which became the column names.
+Above:
 
-The resulting data frame has 3 rows (one for each cat) and 4 columns
-(each with a type of info about the cats, like coat color).
+- We created 3 vectors and pasted them side-by-side to create a data frame
+  in which _each vector constitutes a column_.
+- We gave each vector a name (e.g., `coat`), and those names became the _column names_.
+- The resulting data frame has 3 rows (one for each cat) and 3 columns
+  (each with a type of info about the cats, like coat color).
 
-In data frames, typically:
+Data frames are typically (and best) organized like above, where:
 
-- Separate _variables_ (e.g. coat color, weight) are spread across columns,
-- Separate "_observations_" (e.g., cat/person, sample) are spread across rows.
+- Each column contains a different **"variable"** (e.g. coat color, weight)
+- Each row contains a different **"observation"** (e.g., cat/person, sample)
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ### Extracting columns from a data frame
 
-We can extract individual columns from a data frame by specifying their names
-using the `$` operator:
+We can extract individual columns from a data frame using the `$` operator:
 
 ```{r}
 cats$weight
@@ -312,8 +334,9 @@ cats$coat
 ```
 
 This kind of operation will return a vector.
-We won't go into more detail about exploring (or manipulating) data frames,
-because we will do that with the _dplyr_ package in the next episode.
+
+Here, we won't go into more detail about exploring or manipulating data frames,
+because we will do that with the _dplyr_ package in the next session.
 
 <br>
 
@@ -321,9 +344,9 @@ because we will do that with the _dplyr_ package in the next episode.
 
 ### R's main Data Types
 
-R distinguishes between several kinds of data, such as between character strings
-and numbers, in a formal way, and uses several "data types" to do so.
-The behavior of R in various operations will heavily depend on the data type --
+R distinguishes different kinds of data, such as character strings and numbers,
+in a formal way, using several pre-defined "data types".
+The behavior of R in various operations will depend heavily on the data type --
 for example, the below fails:
 
 ```{r, error=TRUE}
@@ -338,8 +361,10 @@ typeof("valerion")
 
 So the data type is `character`,
 which we commonly refer to as character strings or strings.
-In formal terms, R will not allow us to perform mathematical functions on
-vectors of type `character`.
+In formal terms, the failed command did not work because R will not allow us to
+perform mathematical functions on vectors of type `character`.
+
+<hr style="height:1pt; visibility:hidden;" />
 
 The `character` data type typically contains letters but can have any character,
 including numbers, as long as it is quoted: 
@@ -348,8 +373,10 @@ including numbers, as long as it is quoted:
 typeof("5")
 ```
 
-Besides `character`, the other 3 common data types are
-`double` (also called `numeric`), `integer`, and `logical`.
+<hr style="height:1pt; visibility:hidden;" />
+
+Besides `character`, the other 3 **common data types** are
+`double` (also called `numeric`), `integer`, and `logical`:
 
 - `double` / `numeric` -- numbers that can have decimal points:
 
@@ -370,87 +397,69 @@ typeof(TRUE)
 typeof(FALSE)
 ```
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
------
+### One vector can only contain one data type 
 
-### Challenge 2 
+Vectors, and therefore also individual columns in data frames,
+can only **be composed of a single data type**.
 
-What do you expect each of the following to produce?
-
-```{r, error=TRUE, eval=FALSE}
-typeof("TRUE")
-typeof(banana)
-```
-
-<details><summary>Click for the solution</summary>
-
-1. `"TRUE"` is `character` because of the quotes around it.
-2. Recall the earlier example:
-   this returns an error because the object `banana` does not exist.
-
-</details>
-
------
-
-<br>
-
-### Vectors and data frame columns can only have 1 data type 
-
-Vectors and individual columns in data frames can only be composed of a single
-data type.
 R will silently pick the "best-fitting" data type when you enter or read data into
 a data frame.
-Let's see what the data types are in our `cats` data frame:
+So let's see what the data types are in our `cats` data frame:
 
 ```{r}
 str(cats)
 ```
 
-- The `coat` column is `character`, abbreviated `chr`.
+- The `name` and `coat` columns are `character`, abbreviated `chr`.
 - The `weight` column is `double`/`numeric`, abbreviated `num`.
-- The `likes_string` column is `integer`, abbreviated `int`.
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
------
+::: exercise
+### {{< fa user-edit >}} Challenge 3 {-}
 
-### Challenge 3
+What type of vector (if any) do you think each of the following will produce?
 
-Given what we've learned so far,
-what type of vector do you think the following will produce?
-
-```{r}
-quiz_vector <- c(2, 6, "3")
+```{r, error=TRUE, eval=FALSE}
+typeof("TRUE")
+typeof(banana)
+typeof(2, 6, "3")
 ```
 
-<details><summary>Click for the solution</summary>
+<details><summary>Click for the solutions</summary>
 
-It produces a `character` vector:
+1. `"TRUE"` is `character` because of the quotes around it.
+2. Recall the earlier example:
+   this returns an error because the object `banana` does not exist.
+3. It produces a `character` vector:
+   we'll talk about what happened here in the next section.
 
-```{r}
-quiz_vector
-typeof(quiz_vector)
+```{r, error=TRUE}
+typeof("TRUE")
+typeof(banana)
+typeof(c(2, 6, "3"))
 ```
-
-We'll talk about what happened here in the next section.
 
 </details>
+:::
 
------
-
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ### Automatic Type Coercion
 
-What happened in the code from the challenge above is something called *type coercion*,
-which can be the source of many surprises,
-and is one reason we need to be aware of the basic data types and how R will
-interpret them.
-When R encounters a _mix of types_ (here `double` and `character`) to be combined
-into a single vector, it will force them all to be the same type.
+That in the challenge above, `c(2, 6, "3")` returned a character vector,
+is due to something called **type coercion**.
 
-Here is another example:
+When R encounters a _mix of types_ (here, numbers and characters)
+to be combined into a single vector, it will force them all to be the same type.
+It "must" do this because, as pointed out above,
+a vector can consist of only a single data type.
+
+Type coercion can be the source of many surprises,
+and is one reason we need to be aware of the basic data types and how R will
+interpret them. Here is another example:
 
 ```{r}
 coercion_vector <- c("a", TRUE)
@@ -466,13 +475,16 @@ The nitty-gritty of type coercion aside, the point is:
 if your data doesn't look like what you thought it was going to look like,
 type coercion may well be to blame!
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ### Manual Type Conversion
 
 Luckily, you are not simply at the mercy of whatever R decides to do automatically,
-but can convert vectors at will using the `as.` group of functions
-(here, try RStudio's auto-complete function: Type "`as.`" and then press the TAB key):
+but can convert vectors at will using the `as.` group of functions:
+
+:::callout-tip
+### Try to use RStudio's auto-complete functionality here: type "`as.`" and then press the <kbd>Tab</kbd> key.
+:::
 
 ```{r}
 as.double(c("0", "2", "4"))
@@ -480,21 +492,7 @@ as.double(c("0", "2", "4"))
 as.character(c(0, 2, 4))
 ```
 
-As another example, in our `cats` data, `likes_string` is numeric,
-but the `1`s and `0`s actually represent `TRUE` and `FALSE`
-(a common way of representing them).
-
-```{r}
-cats$likes_string
-```
-
-We could use the `logical` data type here,
-by converting this column with the `as.logical()` function,
-which will turn 0's into `FALSE` and everything else, including 1, to `TRUE`:
-
-```{r}
-as.logical(cats$likes_string)
-```
+<hr style="height:1pt; visibility:hidden;" />
 
 As you may have guessed, though, not all type conversions are possible:
 
@@ -502,21 +500,17 @@ As you may have guessed, though, not all type conversions are possible:
 as.double("kiwi")
 ```
 
-(`NA` is R's way of denoting _missing data_.)
-
-<br>
-
-----
+(`NA` is R's way of denoting _missing data_ --
+see [this bonus section](#missing-values-na) for more.)
 
 <br>
 
 ## Factors
 
-In R, categorical data, like different treatments in an experiment,
+In R, **categorical** data like different treatments in an experiment,
 can be stored as "factors".
-Factors are useful for statistical analyses and also for plotting,
-the latter because you can specify a custom order among the so-called "levels" 
-of the factor.
+Factors are useful for statistical analyses and for plotting:
+for example, they allow you to specify a custom order.
 
 ```{r}
 diet_vec <- c("high", "medium", "low", "low", "medium", "high")
@@ -533,15 +527,23 @@ diet_fct <- factor(diet_vec, levels = c("low", "medium", "high"))
 diet_fct
 ```
 
+<hr style="height:1pt; visibility:hidden;" />
+
+::: callout-warning
+### Oddly, factors are technically not a data type
 For most intents and purposes,
 it makes sense to think of factors as another data type, even though technically,
-it is a kind of data structure build on the `integer` data type:
+they are a kind of data structure build on the `integer` data type:
 
 ```{r}
 typeof(diet_fct)
 ```
+:::
 
-### Challenge 4
+<br>
+
+::: exercise
+### {{< fa user-edit >}} Challenge 3 {-}
 
 An important part of every data analysis is cleaning input data.
 Here, you will clean a cat data set that has an added observation with a
@@ -582,8 +584,6 @@ cats_v2$weight <- _____(cats_v2$weight)
 _____
 ```
 
-<br>
-
 <details><summary>Click for the solution</summary>
 
 ```{r}
@@ -606,38 +606,31 @@ cats_v2$weight <- as.double(cats_v2$weight)
 # 5. Calculate the mean weight of the cats:
 mean(cats_v2$weight)
 ```
-
 </details>
-
-----
+:::
 
 <br>
 
-## Learn more
+## Bonus material for self-study
 
-This material was adapted from
-[this Carpentries lesson episode](https://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1.html).
+### Another Carpentries lesson
+
 To learn more about data types and data structures, see
 [this episode from a separate Carpentries lesson](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures.html).
 
-----
-
-<br>
-
-## Bonus
-
 ### Writing and reading tabular data
 
-Let's practice writing and reading data.
 First, we will write data to file that is in our R environment,
 and then we will read data that is in a file into our R environment.
 
 Via functions from an add-on package, R can interact with Excel spreadsheet files,
 but keeping your data in plain-text files generally benefits reproducibility.
-Tabular plain text files can be stored using a _Tab_ as the delimiter
-(these are often called TSV files, and stored with a `.tsv` extension)
-or with a _comma_ as the delimiter
-(these are often called CSV files, and stored with a `.csv` extension).
+Tabular plain text files can be stored using:
+
+- A _Tab_ as the column delimiter
+  (these are often called TSV files, and stored with a `.tsv` extension)
+- A _comma_ as the column delimiter
+  (these are often called CSV files, and stored with a `.csv` extension).
 
 We will use the `write.csv` function to write the `cats` data frame to a CSV file
 in our current working directory:
@@ -653,6 +646,9 @@ Here, we are explicitly naming all arguments, which can be good practice for cla
 - We are setting `row.names = FALSE` to avoid writing the row names,
   which by default are just row numbers.
 
+::: callout-tip
+### Checking out the file - and quotes around strings
+
 In RStudio's **Files pane**,
 let's find our new file, click on it, and then click "View File".
 That way, the file will open in the editor, where it should look like this:
@@ -664,13 +660,14 @@ That way, the file will open in the editor, where it should look like this:
 "Bella","tabby",3.2,1
 ```
 
-(Note that R adds double quotes `"..."` around strings --
-if you want to avoid this, add `quote = FALSE` to `write.csv()`.)
+Note above that R adds double quotes `"..."` around strings ---
+if you want to avoid this, add `quote = FALSE` to `write.csv()`.
+:::
 
--------
+<hr style="height:1pt; visibility:hidden;" />
 
-Let's also practice reading data from a file into R.
-We'll use the `read.csv()` function for the file we just created: 
+To practice reading data from a file into R.
+use the `read.csv()` function for the file we just created: 
 
 ```{r}
 cats_reread <- read.csv(file = "feline-data.csv")
@@ -682,19 +679,7 @@ A final note:
 of the `write/read.table()` functions,
 which can be used to write and read in tabular data in any kind of plain text file.
 
-### A few other data structures in R
-
-We did not go into details about R's other data structures,
-which are less common than vectors and data frames.
-Two that are worth mentioning briefly, though, are:
-
-- **Matrix**, which can be convenient when you have tabular data that is exclusively
-  numeric (excluding names/labels).
-
-- **List**, which is more flexible (and complicated) than vectors:
-  it can contain multiple data types, and can also be hierarchically structured.
-
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ### Missing values (`NA`)
 
@@ -726,9 +711,29 @@ for example:
 sum(vector_NA, na.rm = TRUE)
 ```
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ### More on the `logical` data type
+
+```{r}
+cats$likes_string <- c(1, 0, 1)
+```
+
+As another example, in our `cats` data, `likes_string` is numeric,
+but the `1`s and `0`s actually represent `TRUE` and `FALSE`
+(a common way of representing them).
+
+```{r}
+cats$likes_string
+```
+
+We could use the `logical` data type here,
+by converting this column with the `as.logical()` function,
+which will turn 0's into `FALSE` and everything else, including 1, to `TRUE`:
+
+```{r}
+as.logical(cats$likes_string)
+```
 
 If you think `1`/`0` could be more useful than `TRUE`/`FALSE` because it's easier
 to count the number of cases something is true or false, consider:
@@ -740,13 +745,21 @@ TRUE + TRUE
 So, logicals can be used as if they were numbers,
 in which case `FALSE` represents 0 and `TRUE` represents 1.
 
-
 ```{r, include=FALSE, echo=FALSE}
 file.remove("feline-data.csv")
 file.remove("feline-data_v2.csv")
-
-#We'll start by downloading a file and reading that into a data frame:
-#URL <- "https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/main/episodes/data/feline-data_v2.csv"
-#download.file(url = URL, destfile = "feline-data_v2.csv")
-#cats_v2 <- read.csv("feline-data_v2.csv")
 ```
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### A few other data structures in R
+
+We did not go into details about R's other data structures,
+which are less common than vectors and data frames.
+Two that are worth mentioning briefly, though, are:
+
+- **Matrix**, which can be convenient when you have tabular data that is exclusively
+  numeric (excluding names/labels).
+
+- **List**, which is more flexible (and complicated) than vectors:
+  it can contain multiple data types, and can also be hierarchically structured.
