@@ -85,22 +85,22 @@ ggplot(data = gapminder)
 
 We have a blank plot! We haven't given enough information for R to know what we want to plot - we have simply told R what dataframe we will be using. We are getting the first “base” layer of the plot.
 
-Instead of providing the dataframe as the first argument to `ggplot()`, we can use the pipe `%>%` (or the newer pipe `|>`) that Jelmer taught us about. This "sends" the data into the next function. I will use this syntax for the rest of the workshop.
+Instead of providing the dataframe as the first argument to `ggplot()`, we can use the pipe `|>` (or the old pipe `%>%` that you might see around, which works in the exact same way) that Jelmer taught us about. This "sends" the data into the next function. I will use this syntax for the rest of the workshop.
 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot()
 ```
 
 ::: {.callout-note}
-`ggplot(data = gapminder)` and `gapminder %>% ggplot()` are the same thing.
+`ggplot(data = gapminder)` and `gapminder |> ggplot()` are the same thing.
 :::
 
 
 If we want to make a scatterplot to understand the relationship between GDP per capita (i.e., `gdpPercap`) and life expectancy (i.e., `lifeExp`), we can do so by setting `x` and `y` respectively within `aes()`, or our aesthetic mappings.
 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(mapping = aes(x = gdpPercap, y = lifeExp))
 ```
 
@@ -111,7 +111,7 @@ Note that the "mapping" part is actually not necessary.
 :::
 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp))
 ```
 
@@ -120,7 +120,7 @@ Now we need to tell R what geometry, or "geom" want to use. All of the "geoms" s
 Let's make a scatterplot here.
 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 ```
@@ -135,7 +135,7 @@ Modify the plot we've made so that you can see the relationship between life exp
 
 Map `x = year` and `y = lifeExp`, and use `geom_point()` since we want a scatterplot.
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = year, y = lifeExp)) +
   geom_point()
 ```
@@ -165,7 +165,7 @@ Try setting `color = continent` within your aesthetic mappings.
 <details><summary>Click for the solution</summary>
 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = year, y = lifeExp, color = continent)) + 
   geom_point()
 ```
@@ -181,7 +181,7 @@ You can better see here that each point is actually a different country now that
 Instead of making a scatter plot, we might want to make a line plot. Using `ggplot` this is as easy as changing out your geom. 
 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = year, y = lifeExp, color = continent)) +
   geom_line()
 ```
@@ -191,14 +191,14 @@ The plot is jumping around a lot since for each year, we have life expectancy da
 We might want to have one line for each country, we can do this by specifying `group = country` within our aesthetic mappings.
 
 ```{r}
-gapminder %>% 
+gapminder |> 
   ggplot(aes(x = year, y = lifeExp, color = continent, group = country)) +
   geom_line()
 ```
 
 A nice thing about `ggplot` is that you don't actually need to decide if you want to have lines or points, you can have both!
 ```{r}
-gapminder %>% 
+gapminder |> 
   ggplot(aes(x = year, y = lifeExp, color = continent, group = country)) +
   geom_line() +
   geom_point()
@@ -208,7 +208,7 @@ Now we see a point for each observation and each point and line is colored based
 
 You can also set your mappings globally (within `ggplot()`) or locally (within a specific geom). Let's see what the difference is. Let's see what happens when we move `color = continent` into `geom_point(aes(color = continent))`.
 ```{r}
-gapminder %>% 
+gapminder |> 
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_point(aes(color = continent)) +
   geom_line()
@@ -226,7 +226,7 @@ Change the order of the point and line layers - what happens?
 
 Points then lines (points are on the bottom)
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_point() +
   geom_line(aes(color = continent))
@@ -234,7 +234,7 @@ gapminder %>%
 
 Lines then points (lines are on the bottom)
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line(aes(color = continent)) +
   geom_point() 
@@ -254,14 +254,14 @@ Sometimes we might want to apply some kind of transformation to our data while p
 
 Let's start with a base plot to see the relationship between GDP per capita (`gdpPercap`) and life expectancy (`lifeExp`).
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 ```
 
 The presence of some outliers for `gdpPercap` make it hard to see this relationship. We can try log base 10 transforming the x-axis to see if this helps using a [`scale_*()`](https://ggplot2.tidyverse.org/reference/index.html#scales) function.
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point() +
   scale_x_log10() # log 10 scales the x axis
@@ -269,7 +269,7 @@ gapminder %>%
 
 I can also make our points a little bit transparent to ease our overplotting problem (where too many point are on top of each other, making each point hard to see) by setting `alpha = `. Alpha ranges from 0 (totally transparent) to 1 (totally opaque). Note that I \put  `alpha = 0.5` **outside** the `aes()` function - we are not mapping alpha to some variable, we are simply **setting** what alpha should be. 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point(alpha = 0.5) + # not inside aes
   scale_x_log10() # log10 transform the x-axis
@@ -279,7 +279,7 @@ Now we can better see the parts of the plot that are very dark are where there a
 
 We can also add a smoothed line of fit to our data by setting `method = "lm"` within `geom_smooth()` to fit a linear model.
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point(alpha = 0.5) + # not inside the aes
   scale_x_log10() +
@@ -288,7 +288,7 @@ gapminder %>%
 
 We can adjust the thickness of the line by setting `linewidth` within `geom_smooth()`, and turn off the confidence interval by setting `se = FALSE`. 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point(alpha = 0.5) + # not inside the aes
   scale_x_log10() +
@@ -318,7 +318,7 @@ The equivalent of `linewidth` for points is `size`.
 <details><summary>Click for the solution</summary>
 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp)) +
   geom_point(alpha = 0.5, color = "purple", size = 0.5) + # outside the aes
   scale_x_log10() +
@@ -349,7 +349,7 @@ The equivalent of `linewidth` for points is `size`.
 
 All points are now triangles. You can find info on the shape codes [here](https://www.datanovia.com/en/blog/pch-in-r-best-tips/).
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp, color = continent)) +
   geom_point(shape = 17, # 17 is a closed triangle
              alpha = 0.5) + 
@@ -359,7 +359,7 @@ gapminder %>%
 
 All points are now open triangles, we are setting continent to `fill` and making the outline black. Note that only shapes 21-25 can accept both a `color` (outside) and `fill` (inside). Otherwise, they only accept `color`.
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp, fill = continent)) +
   geom_point(shape = 24, # open triangle
              alpha = 0.5, 
@@ -370,7 +370,7 @@ gapminder %>%
 
 Mapping `shape` to `continent`
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = gdpPercap, y = lifeExp, color = continent)) +
   geom_point(aes(shape = continent), alpha = 0.5) + 
   scale_x_log10() +
@@ -390,20 +390,20 @@ Let's say we want to understand how life expectancy changes over time throughout
 First let's use what [Jelmer taught us](https://osu-codeclub.github.io/carpentries-feb-2025/3_dplyr.html#filter-to-pick-rows-observations) to `filter` for only the observations from the Americas.
 
 ```{r}
-gapminder_americas <- gapminder %>%
+gapminder_americas <- gapminder |>
   filter(continent == "Americas")
 ```
 
 Then, this new data frame `gapminder_americas` can be the data for our next plot. Let's look first without faceting.
 ```{r}
-gapminder_americas %>%
+gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp, group = country)) +
   geom_line()
 ```
 
 Faceting allows us to better see each country on its own.
 ```{r}
-gapminder_americas %>%
+gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line() +
   facet_wrap(vars(country)) + # make facets by country
@@ -416,7 +416,7 @@ gapminder_americas %>%
 
 The plots we've made so far could really benefit from some better labels. We can set what we want or plot labels to be as arguments in `labs().`
 ```{r}
-gapminder_americas %>%
+gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line() +
   facet_wrap(vars(country)) + # make facets by country
@@ -437,7 +437,7 @@ We can do this with more control using the function [`ggsave()`](https://ggplot2
 First we will save our plot as an object using the assignment operator `<-`, here as `life_exp_americas_plot`.
 
 ```{r}
-life_exp_americas_plot <- gapminder_americas %>%
+life_exp_americas_plot <- gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line() +
   facet_wrap(vars(country)) + # make facets by country
@@ -482,7 +482,7 @@ Set labels within `labs().` Adjust theming with `theme()`. Check out the [comple
 <details><summary>Click for the solution</summary>
 
 ```{r}
-gapminder %>%
+gapminder |>
   ggplot(aes(x = continent, y = lifeExp, fill = continent)) +
   geom_boxplot() +
   facet_wrap(vars(year)) +
