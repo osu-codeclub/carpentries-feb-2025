@@ -666,6 +666,5 @@ workshop:
 <br>
 
 ```{r, include=FALSE, echo=FALSE}
-file.remove("feline-data.csv")
-file.remove("feline-data_v2.csv")
+file.remove("gapminder.tsv")
 ```
