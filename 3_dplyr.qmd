@@ -37,11 +37,10 @@ The other tidyverse package we'll cover in today's workshop is _ggplot2_ for mak
 
 ### Loading the tidyverse
 
-All packages in the tidyverse can be installed and loaded with a single call to
-the tidyverse.
-Since you should have already installed the tidyverse^[
+All core tidyverse packages can be installed and loaded with a single command.
+Since you should already have _installed_ the tidyverse^[
 If not: run `install.packages("tidyverse")` now.
-], you are able to load it as follows:
+], you only need to _load_ it, which you do as follows:
 
 ```{r}
 library(tidyverse)
@@ -56,8 +55,8 @@ What this means is that two tidyverse functions, `filter()` and `lag()`,
 have the same names as two functions from the _stats_ package that were already
 in your R environment.
 
-The latter are part of what is often referred to as "base R":
-core R functionality that is always available (loaded) when you start R.
+(Those stats package functions are part of what is often referred to as "base R":
+core R functionality that is always available (loaded) when you start R.)
 
 Due to this function name conflict/collision, for example,
 the `filter()` function from _dplyr_ "masks" the `filter()` function from _stats_:
@@ -72,10 +71,11 @@ package name as follows: `stats::filter()`.
 
 ### The `gapminder` data set
 
-In this session and the ggplot one, we will work with the `gapminder` data set.
-This data set is available in a package ---
-while most packages are built around functions so as to extend R's functionality,
-others merely contain data sets.
+In this session and the next one on data visualization,
+we will work with the `gapminder` data set.
+This data set is available in a package of the same name
+(while most packages are built around functions so as to extend R's functionality,
+others merely contain data sets).
 
 This package, too, you should have already installed^[
 If not: run `install.packages("gapminder")` now.
@@ -85,26 +85,36 @@ If not: run `install.packages("gapminder")` now.
 library(gapminder)
 ```
 
-Let's take a look at the dataset,
-which is stored in a data frame also called `gapminder`:
+Let's take a look at the dataset:
 
 ```{r}
 gapminder
+```
+
+We can also use the `View()` function to look at the data frame ---
+this will open a new tab in our editor pane with a spreadsheet-like look and feel:
+
+```{r, eval=FALSE}
+View(gapminder)
+# (Should display the dataset in an editor pane tab)
 ```
 
 The `gapminder` data frame is a so-called
 **"tibble", which is the tidyverse variant of a data frame.**
 The main difference is the nicer default printing behavior of tibbles:
 e.g. the data types of columns are shown,
-and only a limited number of rows will be printed.
+and only a limited number of rows are printed.
 
 As for the dataset itself, note that each row contains some data
 for a single country in a specific year
-(across 5-year intervals between 1952 and 2007):
+(across 5-year intervals between 1952 and 2007), with the following columns:
 
-- `lifeExp` is the life expectancy in years
-- `pop` is the population size
-- `gdpPercap` is the per-capita GDP
+- `country` (stored as a `factor`)
+- `continent` (stored as a `factor`)
+- `year` (stored as an `integer`)
+- `lifeExp` (stored as an `integer`): the **life expectancy** in years
+- `pop` (stored as an `integer`): the **population size**
+- `gdpPercap` (stored as a `double`): the **per-capita GDP**
 
 <br>
 
@@ -137,8 +147,7 @@ select(.data = gapminder, !continent)
 
 <hr style="height:1pt; visibility:hidden;" />
 
-::: callout-tip
-### Learn more
+::: {.callout-tip appearance='minimal'}
 There are also ways to e.g. select _ranges_ of columns,
 but that is beyond the scope of this short workshop.
 Check the `select()` help by typing `?select` to learn more.
@@ -155,16 +164,13 @@ The syntax to specify the new and old name within the function is `new_name = ol
 --- for example, we may want to rename the `gdpPercap` column:
 
 ```{r}
-rename(.data = gapminder,
-       gdp_per_capita = gdpPercap)
+rename(.data = gapminder, gdp_per_capita = gdpPercap)
 ```
 
-We can also rename multiple columns "at once":
+We can also rename multiple columns at once:
 
 ```{r}
-rename(.data = gapminder,
-       gdp_per_capita = gdpPercap,
-       life_exp = lifeExp)
+rename(.data = gapminder, gdp_per_capita = gdpPercap, life_exp = lifeExp)
 ```
 
 <br>
@@ -210,29 +216,33 @@ Using pipes is also faster and uses less computer memory.
 ]
 
 When using pipes, we no longer specify the input data frame with the `.data`
-argument, because the input is "already" being piped into the function.
+argument, because the input is "already" being piped into the function
+(by default, the input goes to the function's first argument).
 
-::: callout-tip
-#### It is good practice to always start a new line after a pipe `|>` 
-:::
-
-::: {.callout-note collapse="true"}
-### Learn more: piped input goes to the first argument _(Click to expand)_
-Under the hood, when you pipe an object (like the dataframe output of dplyr functions)
-into another function,
-this object will by default be passed to **the first argument of the function**.
-
-_dplyr_ (and other tidyverse) functions are quite consistent
-with the first argument always being a data frame,
-which makes them "pipe-friendly".
+::: {.callout-tip appearance='minimal'}
+For code readability, it is good practice to always start a new line after a pipe `|>` 
 :::
 
 <br>
 
 ## `filter()` to pick rows (observations)
 
-The `filter()` function can be used to keep only those rows that satisfy one or more
-conditions.
+The `filter()` function keeps only those rows that satisfy one or more conditions.
+It is similar to Filter functionality in spreadsheets ---
+except that those only change what you _display_, while `filter()` will _remove_ rows.
+But if that sounds scary, recall what we mentioned earlier:
+
+> All these functions take a data frame as the _input_,
+> and output a new, modified data frame.
+
+:::{.callout-warning appearance="minimal"}
+Therefore, you would _only_ modify existing data if you would assign the output
+back to the input object, like in the example below with the `select()` function:
+
+```{r, eval=FALSE}
+cats <- cats |> select(name, coat)
+```
+:::
 
 Let's start with the following example,
 where we want to keep observations (remember, these are countries in a given year)
@@ -331,7 +341,7 @@ gapminder |>
 
 Sorting can be useful to see the observations with the smallest or largest values
 for a certain column: above we see that the country and year with the smallest
-population size is Sao Tome and Principe in 1952.
+population size is _Sao Tome and Principe_ in 1952.
 
 Default sorting is from small to large, but of course,
 we may also want to sort in the reverse order.
@@ -363,7 +373,7 @@ But we haven't seen how we can _change the data_ or _compute derived data_
 in data frames.
 
 We can do this with the `mutate()` function.
-For example, say that we want to create a new column that has the population size
+For example, say that we want to create a new column that has population sizes
 in millions rather than in individuals:
 
 ```{r}
@@ -371,7 +381,7 @@ gapminder |>
   mutate(pop_million = pop / 10^6)
 ```
 
-So, the code above created a new column called `pop_million` that is the result
+The code above created a new column called `pop_million` that is the result
 of dividing the values in the `pop` column by a million. 
 
 To modify a column rather than adding a new one,
@@ -387,8 +397,8 @@ gapminder |>
 :::exercise
 ### {{< fa user-edit >}} Challenge 2 {-}
 
-**A:** Create a new column called `gdp_billion` that has the absolute GDP
-       (i.e., not relative to population size) in units of billions.
+**A:** Use `mutate()` to create a new column called `gdp_billion` that has the
+       absolute GDP (i.e., not relative to population size) in units of billions.
 
 <details><summary>Click for the solution</summary>
 
@@ -398,7 +408,9 @@ gapminder |>
 ```
 </details>
 
-**B:** (Bonus) Create a new column `planet` that has the value `earth` in every row.
+**B:** _(Bonus)_ Use `mutate()` to create a new column `planet` that has the value
+`earth` in every row. We didn't cover this kind of scenario, but go ahead and test
+your intuition!
 
 <details><summary>Click for the solution</summary>
 
@@ -413,7 +425,7 @@ gapminder |>
 
 <br>
 
-## `summarize()` to compute (per-group) summary statistics
+## `summarize()` to compute (groupwise) summary stats
 
 In combination with `group_by()`,
 the `summarize()` function can compute data summaries across groups of rows of a
@@ -427,10 +439,10 @@ gapminder |>
             mean_lifeExp = mean(lifeExp))
 ```
 
-Above, we computed the mean for two columns, across all rows.
+Above, we computed the mean for two columns, across **all** rows.
 This is already useful,
 but in combination with the helper function `group_by()`,
-`summarize()` becomes really powerful.
+`summarize()` becomes really powerful by allowing us to compute **groupwise** stats.
 
 For example, let's compute the mean GDP and mean life expectancy separately
 for each continent:
@@ -496,9 +508,117 @@ lifeExp_bycountry |>
 
 ## Bonus material for self-study
 
+### Writing and reading tabular data to and from files
+
+When working with your own data in R,
+it is common to want to read data from files into your R environment,
+and write data that is in your R environment to files.
+
+While it's possible to have R interact with Excel spreadsheet files^[
+Using the [readxl](https://readxl.tidyverse.org/) package.
+This is installed as part of the tidyverse but is not a _core_ tidyverse package
+and therefore needs to be loaded separately.
+], keeping your data in **plain-text files** generally benefits reproducibility.
+Tabular plain text files can be stored using:
+
+- A _Tab_ as the column delimiter
+  (often called TSV files, and stored with a `.tsv` extension)
+- A _comma_ as the column delimiter
+  (often called CSV files, and stored with a `.csv` extension).
+
+We will use functions from the _readr_ package,
+which is part of the core tidyverse and therefore already loaded into your environment,
+to practice writing and reading data to and from TSV files.
+
+#### Writing files
+
+First, let's write the `gapminder` data frame to file using the `write_tsv()`
+function with arguments `x` for the R object and `file` for the file path:
+
+```{r}
+write_tsv(x = gapminder, file = "gapminder.tsv")
+```
+
+This will have written to a file called `gapminder.tsv` in your R working directory
+(you can see where that is at the top of the Console, or by running `getwd()`).
+
+::: callout-tip
+### Checking out the file
+
+In RStudio's **Files pane**,
+find your new file and click on it.
+That way, the file will open in the editor.
+:::
+
+::: {.callout-note collapse="true"}
+### Want to write to a different folder on your computer? _(Click to expand)_
+
+The `file` argument to `write_tsv()` takes a file _path_,
+meaning that you can specify any location on your computer for it it in addition
+to its name.
+
+For example, if you had a folder called `results` in your current working directory
+(directory is just another word for folder), you could put the file in there:
+
+```{r, eval=FALSE}
+write_tsv(x = gapminder, file = "results/gapminder.tsv")
+```
+
+Note that a forward slash `/` as a folder delimiter will work regardless of your
+operating system
+(even though Windows natively delimits folder by a backslash `\`).
+
+Finally, if you want to store the file in a totally different place than where
+you are now, note that you can also use so-called absolute (or "full") paths like:
+
+```{r, eval=FALSE}
+write_tsv(x = gapminder, file = "/Users/poelstra.1/Desktop/gapminder.tsv")
+```
+:::
+
+<hr style="height:1pt; visibility:hidden;" />
+
+#### Reading from files
+
+To practice reading data from a file,
+we'll use the `read_tsv()` function on the file we just created: 
+
+```{r}
+gapminder_reread <- read_tsv(file = "gapminder.tsv")
+```
+
+Note that the function is rather chatty by default,
+telling us how many rows and columns it read in, and what their data types are.
+Let's check the resulting object:
+
+```{r}
+gapminder_reread
+```
+
+This looks good!
+Do note that the column's data types are not identical to what they were
+(`year` and `pop` are saved as `double` rather than `integer`,
+and `country` and `continent` as `character` rather than `factor`).
+This is largely expected because that kind of metadata is not stored in a plain-text
+TSV, so `read_tsv()` will by default simply make best guesses as to the types.
+
+Alternatively, we could tell read_tsv what the column types should be using
+abbreviations (`f` for `factor`, `i` for `integer`, `d` for `double` ---
+run `?read_tsv` for more info):
+
+```{r}
+read_tsv(file = "gapminder.tsv", col_types = "ffidi")
+```
+
+::: {.callout-tip appearance='minimal'}
+To read and write CSV files instead, use `read_csv()` / `write_csv()` in the same way.
+:::
+
+<hr style="height:1pt; visibility:hidden;" />
+
 ### `count()` and `n()`
 
-A very common operation is to count the number of observations for each group.
+A common operation is to count the number of observations for each group.
 The _dplyr_ package comes with two related functions that help with this.
 
 For instance, if we wanted to check the number of countries included in the
@@ -512,11 +632,12 @@ gapminder |>
     count(continent, sort = TRUE)
 ```
 
-If we need to use the number of observations in calculations,
+If we need to use the number of observations in calculations like by `summarize()`,
 the `n()` function is useful.
-It will return the total number of observations in the current group rather than
-counting the number of observations in each group within a specific column.
-For instance, if we wanted to get the standard error of the life expectancy per continent:
+It will return the total number of observations in the "_current group_"
+as applicable ---
+for instance,
+if we wanted to get the standard error of the life expectancy per continent:
 
 ```{r}
 gapminder |>
@@ -543,3 +664,8 @@ workshop:
   [episode 13 of our focal Carpentries lesson](https://swcarpentry.github.io/r-novice-gapminder/instructor/13-tidyr.html).
 
 <br>
+
+```{r, include=FALSE, echo=FALSE}
+file.remove("feline-data.csv")
+file.remove("feline-data_v2.csv")
+```
