@@ -406,8 +406,7 @@ Faceting allows us to better see each country on its own.
 gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line() +
-  facet_wrap(vars(country)) + # make facets by country
-  theme(axis.text.x = element_text(angle = 45)) # years on the x on a 45 deg angle
+  facet_wrap(vars(country))  # make facets by country
 ```
 
 -------
@@ -420,12 +419,60 @@ gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line() +
   facet_wrap(vars(country)) + # make facets by country
-  theme(axis.text.x = element_text(angle = 45)) + # years on the x on a 45 deg angle
   labs(x = "Year",              # x axis title
        y = "Life expectancy",   # y axis title
        title = "Figure 1. Life expectancy in the Americas from 1952-2007", # main title of figure
       )
 ```
+
+-------
+
+## Adjusting theming
+
+We can also modify the non-data elements on our plot by controlling the theming. We can do this in two general ways:
+
+* by selecting a pre-set (or "complete") theme, functions start with [`theme_*()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+* by modifying individual settings using the function [`theme()`](https://ggplot2.tidyverse.org/reference/theme.html)
+
+We will start with the pre-set themes by adding this function to the end of our ggplot code. 
+
+```{r}
+gapminder_americas |>
+  ggplot(aes(x = year, y = lifeExp)) +
+  geom_line() +
+  facet_wrap(vars(country)) + # make facets by country
+  theme(axis.text.x = element_text(angle = 45)) + # years on the x on a 45 deg angle
+  labs(x = "Year",              # x axis title
+       y = "Life expectancy",   # y axis title
+       title = "Figure 1. Life expectancy in the Americas from 1952-2007", # main title of figure
+      ) +
+  theme_bw() # change to a black and white theme
+```
+
+
+If we wanted to change the fonts, change the color the strip text (i.e., the text in the rectangle behind the names of the countries), the strip text background (i.e., the rectangle behind the names of the countries), adjust the x-axis year labels to be on an angle so they're not so squished, we can do all that.
+
+```{r}
+gapminder_americas |>
+  ggplot(aes(x = year, y = lifeExp)) +
+  geom_line() +
+  facet_wrap(vars(country)) + # make facets by country
+  theme(axis.text.x = element_text(angle = 45)) + # years on the x on a 45 deg angle
+  labs(x = "Year",              # x axis title
+       y = "Life expectancy",   # y axis title
+       title = "Figure 1. Life expectancy in the Americas from 1952-2007", # main title of figure
+      ) +
+  theme_bw() + # change to a black and white theme
+  theme(text = element_text(family = "AppleGothic"), # change all fonts
+        strip.background = element_rect(color = "red", fill = "black"), # strip text outline red, fill black
+        strip.text = element_text(color = "white"), # strip text white
+        axis.text.x = element_text(angle = 45, # years on the x on a 45 deg angle
+                                   vjust = 0.7)) # scoot year numbers down a lil
+```
+
+::: {.callout-note}
+Remember that your code is run from top to bottom, so if code lower down over-writes something that came above, the lower code will prevail.
+:::
 
 -------
 
@@ -442,10 +489,16 @@ life_exp_americas_plot <- gapminder_americas |>
   geom_line() +
   facet_wrap(vars(country)) + # make facets by country
   theme(axis.text.x = element_text(angle = 45)) + # years on the x on a 45 deg angle
-  labs(x = "Year", # x axis title
-       y = "Life expectancy", # y axis title
+  labs(x = "Year",              # x axis title
+       y = "Life expectancy",   # y axis title
        title = "Figure 1. Life expectancy in the Americas from 1952-2007", # main title of figure
-      )
+      ) +
+  theme_bw() + # change to a black and white theme
+  theme(text = element_text(family = "AppleGothic"), # change all fonts
+        strip.background = element_rect(color = "red", fill = "black"), # strip text outline red, fill black
+        strip.text = element_text(color = "white"), # strip text white
+        axis.text.x = element_text(angle = 45, # years on the x on a 45 deg angle
+                                   vjust = 0.7)) # scoot year numbers down a lil
 ```
 
 Then we can save it. I am indicating here to save the plot in a folder called `results` in my working directory, as a file called `lifeExp.png`. If you want your file to go within a folder, you have to first create that folder.
@@ -465,7 +518,7 @@ To learn more about the arguments in `ggsave()` you can always run `?ggsave()`.
 
 ### Challenge 5
 
-Create some box plots that compare life expectancy between the continents over the time period provided. Try and make your plot look nice, add labels and stuff!
+Create some box plots that compare life expectancy between the continents over the time period provided. Try and make your plot look nice, add labels and adjust the theme!
 
 <details><summary>Need a hint?</summary>
 
