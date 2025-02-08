@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -159,7 +193,39 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-use-r-and-r-studio" id="toc-why-use-r-and-r-studio" class="nav-link active" data-scroll-target="#why-use-r-and-r-studio"><span class="header-section-number">1</span> Why use R and R studio?</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">2</span> Overview</a></li>
+  <li><a href="#orienting-to-rstudio-basic-layout" id="toc-orienting-to-rstudio-basic-layout" class="nav-link" data-scroll-target="#orienting-to-rstudio-basic-layout"><span class="header-section-number">3</span> Orienting to RStudio (basic layout)</a></li>
+  <li><a href="#r-script" id="toc-r-script" class="nav-link" data-scroll-target="#r-script"><span class="header-section-number">4</span> R script</a>
+  <ul class="collapse">
+  <li><a href="#why-use-a-script" id="toc-why-use-a-script" class="nav-link" data-scroll-target="#why-use-a-script"><span class="header-section-number">4.1</span> Why use a script?</a></li>
+  </ul></li>
+  <li><a href="#sending-code-to-the-console" id="toc-sending-code-to-the-console" class="nav-link" data-scroll-target="#sending-code-to-the-console"><span class="header-section-number">5</span> Sending code to the console</a></li>
+  <li><a href="#working-directories" id="toc-working-directories" class="nav-link" data-scroll-target="#working-directories"><span class="header-section-number">6</span> Working directories</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-directory-and-a-working-directory" id="toc-what-is-a-directory-and-a-working-directory" class="nav-link" data-scroll-target="#what-is-a-directory-and-a-working-directory"><span class="header-section-number">6.1</span> What is a directory and a working directory?</a></li>
+  <li><a href="#find-your-working-directory" id="toc-find-your-working-directory" class="nav-link" data-scroll-target="#find-your-working-directory"><span class="header-section-number">6.2</span> Find your working directory</a></li>
+  <li><a href="#set-your-working-directory" id="toc-set-your-working-directory" class="nav-link" data-scroll-target="#set-your-working-directory"><span class="header-section-number">6.3</span> Set your working directory</a></li>
+  <li><a href="#avoid-all-working-directory-nonsense-with-a-.rproj" id="toc-avoid-all-working-directory-nonsense-with-a-.rproj" class="nav-link" data-scroll-target="#avoid-all-working-directory-nonsense-with-a-.rproj"><span class="header-section-number">6.4</span> Avoid all working directory nonsense with a <code>.RProj</code></a></li>
+  </ul></li>
+  <li><a href="#r-as-calculator" id="toc-r-as-calculator" class="nav-link" data-scroll-target="#r-as-calculator"><span class="header-section-number">7</span> R as calculator</a></li>
+  <li><a href="#the-r-prompt" id="toc-the-r-prompt" class="nav-link" data-scroll-target="#the-r-prompt"><span class="header-section-number">8</span> The R prompt</a></li>
+  <li><a href="#adding-comments-to-your-code" id="toc-adding-comments-to-your-code" class="nav-link" data-scroll-target="#adding-comments-to-your-code"><span class="header-section-number">9</span> Adding comments to your code</a></li>
+  <li><a href="#functions-in-r" id="toc-functions-in-r" class="nav-link" data-scroll-target="#functions-in-r"><span class="header-section-number">10</span> Functions in R</a></li>
+  <li><a href="#comparing-things" id="toc-comparing-things" class="nav-link" data-scroll-target="#comparing-things"><span class="header-section-number">11</span> Comparing things</a></li>
+  <li><a href="#r-objects" id="toc-r-objects" class="nav-link" data-scroll-target="#r-objects"><span class="header-section-number">12</span> R objects</a>
+  <ul class="collapse">
+  <li><a href="#assigning-stuff-to-objects" id="toc-assigning-stuff-to-objects" class="nav-link" data-scroll-target="#assigning-stuff-to-objects"><span class="header-section-number">12.1</span> Assigning stuff to objects</a></li>
+  <li><a href="#object-names" id="toc-object-names" class="nav-link" data-scroll-target="#object-names"><span class="header-section-number">12.2</span> Object names</a></li>
+  </ul></li>
+  <li><a href="#managing-your-environment" id="toc-managing-your-environment" class="nav-link" data-scroll-target="#managing-your-environment"><span class="header-section-number">13</span> Managing your environment</a></li>
+  <li><a href="#r-help-help-and" id="toc-r-help-help-and" class="nav-link" data-scroll-target="#r-help-help-and"><span class="header-section-number">14</span> R Help: <code>help()</code> and <code>?</code></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -195,8 +261,268 @@ ul.task-list li input[type="checkbox"] {
 
 <hr>
 <p><br></p>
+<p>In this session, we will learn how to find your way around <strong>RStudio</strong>, how to interact with <em>R</em>, how to manage your environment, and how to install packages. Our objectives include:</p>
+<ul>
+<li>Describing the purpose and use of each pane in RStudio</li>
+<li>Locating buttons and options in RStudio</li>
+<li>Defining a variable/object</li>
+<li>Assigning data to a variable/object</li>
+<li>Managing a workspace in an interactive R session</li>
+<li>Using mathematical and comparison operators</li>
+<li>Calling functions</li>
+<li>Managing packages</li>
+<li>Getting help in R</li>
+</ul>
+<p>By the end of this session, you will be well-equipped with the foundational skills needed to navigate <strong>RStudio</strong> and effectively interact with <em>R</em>.</p>
+<p><br></p>
+<section id="why-use-r-and-r-studio" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="why-use-r-and-r-studio"><span class="header-section-number">1</span> Why use R and R studio?</h2>
+<p>Science is a multi-step process: once you’ve designed an experiment and collected data, the real fun begins with analysis! <em>In this lesson, we will teach you some of the fundamentals of the R language and share best practices for organizing code in scientific projects, which will make your life easier.</em></p>
+<p>Though we could use a spreadsheet in Microsoft Excel or Google Sheets to analyze our data, these tools have limitations in terms of flexibility and accessibility. Moreover, they make it difficult to share the steps involved in exploring and modifying raw data, which is essential for conducting “reproducible” research.</p>
+<p>Therefore, this lesson will guide you on how to start exploring your data using <a href="https://www.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a>. R is a program available for Windows, Mac, and Linux operating systems, and can be freely downloaded from the link provided above. To run R, all you need is the R program.</p>
+<p>Since R is open source, there are endlessly available free resource to learn how to do practically whatever you want on the internet.</p>
+</section>
+<section id="overview" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="overview"><span class="header-section-number">2</span> Overview</h2>
+<p>We will begin with raw data, perform exploratory analyses, and learn how to plot results graphically. This example starts with a dataset from <a href="https://www.gapminder.org/">gapminder.org</a> containing population information for many countries through time. Can you read the data into R? Can you plot the population for Senegal? Can you calculate the average income for countries on the continent of Asia? <strong>By the end of these lessons you will be able to do things like plot the populations for all of these countries in under a minute!</strong></p>
+</section>
+<section id="orienting-to-rstudio-basic-layout" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="orienting-to-rstudio-basic-layout"><span class="header-section-number">3</span> Orienting to RStudio (basic layout)</h2>
+<p>When you first open RStudio, you will be greeted by three panels:</p>
+<ul>
+<li>The interactive R console/Terminal (entire left)</li>
+<li>Environment/History/Connections (tabbed in upper right)</li>
+<li>Files/Plots/Packages/Help/Viewer (tabbed in lower right)</li>
+</ul>
+<p>Once you open files, such as R scripts, an editor panel will also open in the top left. The RStudio integrated development environment (IDE) has four quadrants.</p>
+<ul>
+<li><strong>Top left:</strong> your source editor. Here you can open, edit, and send code to be executed from files like <code>.R</code>, <code>.Rmd</code>, <code>.qmd</code> or others.</li>
+<li><strong>Bottom left:</strong> by default this is your console. If you’ve used standalone R, this is the same thing. It is here where your code will be actually executed. You can also type here directly to execute code. There are also two additional tabs, terminal and background jobs which we won’t talk about now.</li>
+<li><strong>Top right:</strong> by default this is your environment. It will show you all the objects that are active in your R environment. Here, you can also see history, connections, build a website, use git, or open tutorials but we won’t talk about those now.</li>
+<li><strong>Bottom right:</strong> by default this shows the files in your working directory (more about that next). There are also additional tabs which show plots, packages, help, viewers, presentations but we won’t talk about those now.</li>
+</ul>
+<p>There is an RStudio cheatsheet for the IDE which is very useful, and you can find it <a href="https://rstudio.github.io/cheatsheets/html/rstudio-ide.html">here</a>.</p>
+</section>
+<section id="r-script" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="r-script"><span class="header-section-number">4</span> R script</h2>
+<p>One of the panels contains a “Source Editor” pane, as in a Text Editor. Here, we can open and edit all sorts of text files — including R scripts. This quadrant will disappear if you have no files open:</p>
+<p><strong><em>Create and open a new R script by clicking File (top menu bar) &gt; New File &gt; R Script.</em></strong></p>
+<section id="why-use-a-script" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="why-use-a-script"><span class="header-section-number">4.1</span> Why use a script?</h3>
+<p>An R script is a text file that contains R code.</p>
+<p>Iit’s a good idea to write and save most of our code in scripts.</p>
+<p>This helps us <strong><em>keep track of what we’ve been doing</em></strong>, especially in the longer run, and to re-run our code after modifying input data or one of the lines of code.</p>
+</section>
+</section>
+<section id="sending-code-to-the-console" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="sending-code-to-the-console"><span class="header-section-number">5</span> Sending code to the console</h2>
+<p>With the cursor on a line of code in the script, press <code>Ctrl</code> + <code>Enter</code> (or, on a Mac: <code>Cmd</code> + <code>Enter</code>).</p>
+</section>
+<section id="working-directories" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="working-directories"><span class="header-section-number">6</span> Working directories</h2>
+<section id="what-is-a-directory-and-a-working-directory" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="what-is-a-directory-and-a-working-directory"><span class="header-section-number">6.1</span> What is a directory and a working directory?</h3>
+<p>Understanding directories and your working directory is crucial when coding. A directory can be thought of as a synonym for a folder, with each file contained within a directory. These folders have specific physical locations on your computer, known as paths. Directories are hierarchical and may differ slightly across various operating systems, such as Mac, Windows, and Linux. By using Finder (Mac) or File Explorer (Windows), you can navigate to different locations on your computer.</p>
+<p>Your working directory is exactly what it sounds like—it is the current location or path on your computer where you are actively working. This is important because, by default, your files will be read from, stored in, and saved to this location. Therefore, it is essential to know where your working directory is.</p>
+</section>
+<section id="find-your-working-directory" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="find-your-working-directory"><span class="header-section-number">6.2</span> Find your working directory</h3>
+<p>We can figure out where our working directory is by typing the function <code>getwd()</code> into the console. <strong>Note:</strong> I am using a Mac so you can see my path as forward slashes <code>/</code> while Windows machines will have backslashes <code>\</code>.</p>
+<p>You can also use the RStudio GUI to navigate to your working directory by going to the Files quadrant (bottom right), click the gear, and select <code>Go To Working Directory</code>.</p>
+</section>
+<section id="set-your-working-directory" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="set-your-working-directory"><span class="header-section-number">6.3</span> Set your working directory</h3>
+<p>If your working directory is not where you want to store your files, you can change it. We can do that using the function <code>setwd()</code>.</p>
+<p><code>setwd("/this/should/be/your/working-directory/path")</code></p>
+<p>Alternatively, you can go to <strong>Session</strong> -&gt; <strong>Set Working DIrectory</strong> -&gt; <strong>Choose Directory…</strong>*</p>
+</section>
+<section id="avoid-all-working-directory-nonsense-with-a-.rproj" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="avoid-all-working-directory-nonsense-with-a-.rproj"><span class="header-section-number">6.4</span> Avoid all working directory nonsense with a <code>.RProj</code></h3>
+</section>
+</section>
+<section id="r-as-calculator" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="r-as-calculator"><span class="header-section-number">7</span> R as calculator</h2>
+<p>When using R as a calculator, the order of operations is the same as you would have learned back in school.</p>
+<p>From highest to lowest precedence:</p>
+<ul>
+<li>Parentheses: (, )</li>
+<li>Exponents: ^ or **</li>
+<li>Multiply: *</li>
+<li>Divide: /</li>
+<li>Add: +</li>
+<li>Subtract: -</li>
+</ul>
+</section>
+<section id="the-r-prompt" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="the-r-prompt"><span class="header-section-number">8</span> The R prompt</h2>
+<p>The <code>&gt;</code> sign in your console is the R “prompt”. It indicates that R is ready for you to type something.</p>
+<p>When you are not seeing the <code>&gt;</code> prompt, R is either <strong>busy</strong> (because you asked it to do a longer-running computation) or <strong>waiting</strong> for you to complete an incomplete command.</p>
+<p>If you notice that your prompt turned into a <code>+</code>.</p>
+<p>To get out of this situation, one option is to try and finish the command (in this case, by typing another number) — but here, let’s practice another option: <strong>aborting the command by pressing <code>Esc</code>.</strong></p>
+</section>
+<section id="adding-comments-to-your-code" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="adding-comments-to-your-code"><span class="header-section-number">9</span> Adding comments to your code</h2>
+<p>You can use <code>#</code> signs to comment your code.</p>
+<ul>
+<li><p>Anything to the right of a <code>#</code> is ignored by R, meaning it won’t be executed.</p></li>
+<li><p>You can use <code>#</code> both at the start of a line (entire line is a comment) or anywhere in a line following code (rest of the line is a comment).</p></li>
+<li><p>In your R script, comments are formatted differently so you can clearly distinguish them from code.</p></li>
+</ul>
+</section>
+<section id="functions-in-r" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="functions-in-r"><span class="header-section-number">10</span> Functions in R</h2>
+<p>Almost everything is a function in R. Important functions that you have already used are <code>install.packages()</code> and <code>library()</code>. Let’s try it with <code>gapminder</code> and <code>tidyverse</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gapminder"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Another important function is <code>c()</code>, which stands for <strong>combine</strong> or <strong>concatenate</strong>.</p>
+<p>Below other functions:</p>
+<table class="table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 54%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Function</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="even">
+<td><strong>abs(</strong><em>x</em><strong>)</strong></td>
+<td>absolute value</td>
+</tr>
+<tr class="odd">
+<td><strong>sqrt(</strong><em>x</em><strong>)</strong></td>
+<td>square root</td>
+</tr>
+<tr class="even">
+<td><strong>ceiling(</strong><em>x</em><strong>)</strong></td>
+<td>ceiling(3.475) is 4</td>
+</tr>
+<tr class="odd">
+<td><strong>floor(</strong><em>x</em><strong>)</strong></td>
+<td>floor(3.475) is 3</td>
+</tr>
+<tr class="even">
+<td><strong>trunc(</strong><em>x</em><strong>)</strong></td>
+<td>trunc(5.99) is 5</td>
+</tr>
+<tr class="odd">
+<td><strong>round(</strong><em>x</em>&nbsp;<strong>, digits=</strong>&nbsp;<em>n</em><strong>)</strong></td>
+<td>round(3.475, digits=2) is 3.48</td>
+</tr>
+<tr class="even">
+<td><strong>signif(</strong><em>x</em>&nbsp;<strong>, digits=</strong>&nbsp;<em>n</em><strong>)</strong></td>
+<td>signif(3.475, digits=2) is 3.5</td>
+</tr>
+<tr class="odd">
+<td><strong>cos(</strong><em>x</em><strong>), sin(</strong><em>x</em><strong>), tan(</strong><em>x</em><strong>)</strong></td>
+<td>also asin(x), acos(<em>x</em>), cosh(<em>x</em>), acosh(<em>x</em>), etc.</td>
+</tr>
+<tr class="even">
+<td><strong>log(</strong><em>x</em><strong>)</strong></td>
+<td>natural logarithm</td>
+</tr>
+<tr class="odd">
+<td><strong>log10(</strong><em>x</em><strong>)</strong></td>
+<td>common logarithm</td>
+</tr>
+<tr class="even">
+<td><strong>exp(</strong><em>x</em><strong>)</strong></td>
+<td>e^<em>x</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="comparing-things" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="comparing-things"><span class="header-section-number">11</span> Comparing things</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th><strong>Operator</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&gt;</td>
+<td>Greater than</td>
+<td>5 &gt; 6 returns FALSE</td>
+</tr>
+<tr class="even">
+<td>&lt;</td>
+<td>Less than</td>
+<td>5 &lt; 6 returns TRUE</td>
+</tr>
+<tr class="odd">
+<td>==</td>
+<td>Equals to</td>
+<td>10 == 10 returns TRUE</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>Not equal to</td>
+<td>10 != 10 returns FALSE</td>
+</tr>
+<tr class="odd">
+<td>&gt;=</td>
+<td>Greater than or equal to</td>
+<td>5 &gt;= 6 returns FALSE</td>
+</tr>
+<tr class="even">
+<td>&lt;=</td>
+<td>Less than or equal to</td>
+<td>6 &lt;= 6 returns TRUE</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="r-objects" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="r-objects"><span class="header-section-number">12</span> R objects</h2>
+<section id="assigning-stuff-to-objects" class="level3" data-number="12.1">
+<h3 data-number="12.1" class="anchored" data-anchor-id="assigning-stuff-to-objects"><span class="header-section-number">12.1</span> Assigning stuff to objects</h3>
+<p>We can assign a value to an object with the <strong>assignment operator</strong> <code>&lt;-</code>. A few examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>length_cm <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>conversion <span class="ot">&lt;-</span> <span class="fl">2.54</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>length_cm <span class="sc">/</span> conversion</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>length_in <span class="ot">&lt;-</span>  length_cm <span class="sc">/</span> conversion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="object-names" class="level3" data-number="12.2">
+<h3 data-number="12.2" class="anchored" data-anchor-id="object-names"><span class="header-section-number">12.2</span> Object names</h3>
+<p>Some pointers on object names:</p>
+<ul>
+<li><p>Because R is case sensitive, <code>length_inch</code> is different from <code>Length_Inch</code>!</p></li>
+<li><p>An object name cannot contain spaces — so for readability, you should separate words using:</p>
+<ul>
+<li>Underscores: <code>length_inch</code> (this is called “snake case”)</li>
+<li>Periods: <code>wingspan.inch</code></li>
+<li>Capitalization: <code>wingspanInch</code> or <code>WingspanInch</code> (“camel case”)</li>
+</ul></li>
+<li><p>You will make things easier for yourself by naming objects in a consistent way, for instance by always sticking to your favorite case style like “snake case.”</p></li>
+<li><p>Object names can contain but cannot start with a number: <code>x2</code> is valid but <code>2x</code> is not.</p></li>
+<li><p>Make object names descriptive yet not too long — this is not always easy!</p></li>
+</ul>
+</section>
+</section>
+<section id="managing-your-environment" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="managing-your-environment"><span class="header-section-number">13</span> Managing your environment</h2>
+<p>Introduce <code>ls()</code> and <code>rm()</code></p>
+</section>
+<section id="r-help-help-and" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="r-help-help-and"><span class="header-section-number">14</span> R Help: <code>help()</code> and <code>?</code></h2>
+<p>The <code>help()</code> function and <code>?</code> help operator in R offer access to documentation pages for R functions, data sets, and other objects. They provide access to both packages in the standard R distribution and contributed packages.</p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
