@@ -9,3 +9,209 @@ editor_options:
 -------
 
 <br>
+
+In this session, we will learn how to find your way around **RStudio**, how to interact with *R*, how to manage your environment, and how to install packages. Our objectives include:
+
+-   Describing the purpose and use of each pane in RStudio
+-   Locating buttons and options in RStudio
+-   Defining a variable/object
+-   Assigning data to a variable/object
+-   Managing a workspace in an interactive R session
+-   Using mathematical and comparison operators
+-   Calling functions
+-   Managing packages
+-   Getting help in R
+
+By the end of this session, you will be well-equipped with the foundational skills needed to navigate **RStudio** and effectively interact with *R*.
+
+<br>
+
+## Why use R and R studio?
+
+Science is a multi-step process: once you've designed an experiment and collected data, the real fun begins with analysis! *In this lesson, we will teach you some of the fundamentals of the R language and share best practices for organizing code in scientific projects, which will make your life easier.*
+
+Though we could use a spreadsheet in Microsoft Excel or Google Sheets to analyze our data, these tools have limitations in terms of flexibility and accessibility. Moreover, they make it difficult to share the steps involved in exploring and modifying raw data, which is essential for conducting "reproducible" research.
+
+Therefore, this lesson will guide you on how to start exploring your data using [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download). R is a program available for Windows, Mac, and Linux operating systems, and can be freely downloaded from the link provided above. To run R, all you need is the R program.
+
+Since R is open source, there are endlessly available free resource to learn how to do practically whatever you want on the internet.
+
+## Overview
+
+We will begin with raw data, perform exploratory analyses, and learn how to plot results graphically. This example starts with a dataset from [gapminder.org](https://www.gapminder.org/) containing population information for many countries through time. Can you read the data into R? Can you plot the population for Senegal? Can you calculate the average income for countries on the continent of Asia? **By the end of these lessons you will be able to do things like plot the populations for all of these countries in under a minute!**
+
+## Orienting to RStudio (basic layout)
+
+When you first open RStudio, you will be greeted by three panels:
+
+-   The interactive R console/Terminal (entire left)
+-   Environment/History/Connections (tabbed in upper right)
+-   Files/Plots/Packages/Help/Viewer (tabbed in lower right)
+
+Once you open files, such as R scripts, an editor panel will also open in the top left. The RStudio integrated development environment (IDE) has four quadrants.
+
+-   **Top left:** your source editor. Here you can open, edit, and send code to be executed from files like `.R`, `.Rmd`, `.qmd` or others.
+-   **Bottom left:** by default this is your console. If you’ve used standalone R, this is the same thing. It is here where your code will be actually executed. You can also type here directly to execute code. There are also two additional tabs, terminal and background jobs which we won’t talk about now.
+-   **Top right:** by default this is your environment. It will show you all the objects that are active in your R environment. Here, you can also see history, connections, build a website, use git, or open tutorials but we won’t talk about those now.
+-   **Bottom right:** by default this shows the files in your working directory (more about that next). There are also additional tabs which show plots, packages, help, viewers, presentations but we won’t talk about those now.
+
+There is an RStudio cheatsheet for the IDE which is very useful, and you can find it [here](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html).
+
+## R script
+
+One of the panels contains a “Source Editor” pane, as in a Text Editor. Here, we can open and edit all sorts of text files — including R scripts. This quadrant will disappear if you have no files open:
+
+***Create and open a new R script by clicking File (top menu bar) \> New File \> R Script.***
+
+### Why use a script?
+
+An R script is a text file that contains R code.
+
+Iit’s a good idea to write and save most of our code in scripts.
+
+This helps us ***keep track of what we’ve been doing***, especially in the longer run, and to re-run our code after modifying input data or one of the lines of code.
+
+## Sending code to the console
+
+With the cursor on a line of code in the script, press `Ctrl` + `Enter` (or, on a Mac: `Cmd` + `Enter`).
+
+## Working directories
+
+### What is a directory and a working directory?
+
+Understanding directories and your working directory is crucial when coding. A directory can be thought of as a synonym for a folder, with each file contained within a directory. These folders have specific physical locations on your computer, known as paths. Directories are hierarchical and may differ slightly across various operating systems, such as Mac, Windows, and Linux. By using Finder (Mac) or File Explorer (Windows), you can navigate to different locations on your computer.
+
+Your working directory is exactly what it sounds like—it is the current location or path on your computer where you are actively working. This is important because, by default, your files will be read from, stored in, and saved to this location. Therefore, it is essential to know where your working directory is.
+
+### Find your working directory
+
+We can figure out where our working directory is by typing the function `getwd()` into the console. **Note:** I am using a Mac so you can see my path as forward slashes `/` while Windows machines will have backslashes `\`.
+
+You can also use the RStudio GUI to navigate to your working directory by going to the Files quadrant (bottom right), click the gear, and select `Go To Working Directory`.
+
+### Set your working directory
+
+If your working directory is not where you want to store your files, you can change it. We can do that using the function `setwd()`.
+
+`setwd("/this/should/be/your/working-directory/path")`
+
+Alternatively, you can go to **Session** -\> **Set Working DIrectory** -\> **Choose Directory...**\*
+
+### Avoid all working directory nonsense with a `.RProj`
+
+## R as calculator
+
+When using R as a calculator, the order of operations is the same as you would have learned back in school.
+
+From highest to lowest precedence:
+
+-   Parentheses: (, )
+-   Exponents: \^ or \*\*
+-   Multiply: \*
+-   Divide: /
+-   Add: +
+-   Subtract: -
+
+## The R prompt
+
+The `>` sign in your console is the R “prompt”. It indicates that R is ready for you to type something.
+
+When you are not seeing the `>` prompt, R is either **busy** (because you asked it to do a longer-running computation) or **waiting** for you to complete an incomplete command.
+
+If you notice that your prompt turned into a `+`.
+
+To get out of this situation, one option is to try and finish the command (in this case, by typing another number) — but here, let’s practice another option: **aborting the command by pressing `Esc`.**
+
+## Adding comments to your code
+
+You can use `#` signs to comment your code.
+
+-   Anything to the right of a `#` is ignored by R, meaning it won’t be executed.
+
+-   You can use `#` both at the start of a line (entire line is a comment) or anywhere in a line following code (rest of the line is a comment).
+
+-   In your R script, comments are formatted differently so you can clearly distinguish them from code.
+
+## Functions in R
+
+Almost everything is a function in R. Important functions that you have already used are `install.packages()` and `library()`. Let's try it with `gapminder` and `tidyverse`:
+
+```{r eval=FALSE}
+install.packages("gapminder")
+library(gapminder)
+
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+Another important function is `c()`, which stands for **combine** or **concatenate**.
+
+Below other functions:
+
+|  |  |
+|---------------------------------|---------------------------------------|
+| **Function** | **Description** |
+| **abs(***x***)** | absolute value |
+| **sqrt(***x***)** | square root |
+| **ceiling(***x***)** | ceiling(3.475) is 4 |
+| **floor(***x***)** | floor(3.475) is 3 |
+| **trunc(***x***)** | trunc(5.99) is 5 |
+| **round(***x* **, digits=** *n***)** | round(3.475, digits=2) is 3.48 |
+| **signif(***x* **, digits=** *n***)** | signif(3.475, digits=2) is 3.5 |
+| **cos(***x***), sin(***x***), tan(***x***)** | also asin(x), acos(*x*), cosh(*x*), acosh(*x*), etc. |
+| **log(***x***)** | natural logarithm |
+| **log10(***x***)** | common logarithm |
+| **exp(***x***)** | e\^*x* |
+
+## Comparing things
+
+| **Operator** | **Description**          | **Example**            |
+|--------------|--------------------------|------------------------|
+| \>           | Greater than             | 5 \> 6 returns FALSE   |
+| \<           | Less than                | 5 \< 6 returns TRUE    |
+| ==           | Equals to                | 10 == 10 returns TRUE  |
+| !=           | Not equal to             | 10 != 10 returns FALSE |
+| \>=          | Greater than or equal to | 5 \>= 6 returns FALSE  |
+| \<=          | Less than or equal to    | 6 \<= 6 returns TRUE   |
+
+## R objects
+
+### Assigning stuff to objects
+
+We can assign a value to an object with the **assignment operator** `<-`. A few examples:
+
+```{r eval=FALSE}
+
+length_cm <- 250
+conversion <- 2.54
+
+length_cm / conversion
+
+length_in <-  length_cm / conversion
+```
+
+### Object names
+
+Some pointers on object names:
+
+-   Because R is case sensitive, `length_inch` is different from `Length_Inch`!
+
+-   An object name cannot contain spaces — so for readability, you should separate words using:
+
+    -   Underscores: `length_inch` (this is called “snake case”)
+    -   Periods: `wingspan.inch`
+    -   Capitalization: `wingspanInch` or `WingspanInch` (“camel case”)
+
+-   You will make things easier for yourself by naming objects in a consistent way, for instance by always sticking to your favorite case style like “snake case.”
+
+-   Object names can contain but cannot start with a number: `x2` is valid but `2x` is not.
+
+-   Make object names descriptive yet not too long — this is not always easy!
+
+## Managing your environment
+
+Introduce `ls()` and `rm()`
+
+## R Help: `help()` and `?`
+
+The `help()` function and `?` help operator in R offer access to documentation pages for R functions, data sets, and other objects. They provide access to both packages in the standard R distribution and contributed packages.
