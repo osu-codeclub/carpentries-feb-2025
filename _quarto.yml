@@ -23,13 +23,13 @@ website:
     right:
       - text: To learn more
         menu:
-        - text: OSU Code Club
+        - text: OSU Code Club {{< fa external-link >}}
           href: https://osu-codeclub.github.io
-        - text: Sister workshop on Version Control with Git
+        - text: Sister workshop on Version Control with Git {{< fa external-link >}}
           href: https://library.osu.edu/events/version-control-with-git-virtual-event-0
-        - text: OSU Research Commons
+        - text: OSU Research Commons {{< fa external-link >}}
           href: https://library.osu.edu/researchcommons
-        - text: The Carpentries
+        - text: The Carpentries {{< fa external-link >}}
           href: https://carpentries.org
       - text: About
         href: about.qmd

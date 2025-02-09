@@ -45,7 +45,10 @@ The following **helpers** will be assisisting participants:
 - Dhanashree
 - Kelsey Badger
 - Matthew Thompson
-- ...
+- Elizabeth Campolongo
+- Josh Wang
+- Net Zhang
+- Andrey Kopanev
 
 This workshop is organized by **Kelsey Badger** at the
 [OSU Research Commons](https://library.osu.edu/researchcommons),
@@ -54,6 +57,8 @@ Matthew Thompson and Elizabeth Campolongo at the
 and the abovementioned instructors,
 and is part of
 [OSU's 2025 International Love Data Week activities](https://library.osu.edu/events/international-love-data-week-2025).
+
+### Carpentries
 
 **This is a [Carpentries](https://carpentries.org/) workshop.**
 The Carpentries project comprises the Software Carpentry, Data Carpentry,
@@ -64,3 +69,6 @@ data science skills to researchers.
 The material on this website has been adapted from the
 [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/)
 Software Carpentry lesson.
+
+[Carpentries website for this workshop and the sister workshop on version control
+on Feb 14^th^](https://imageomics.github.io/2025-02-11-osu-online/). 

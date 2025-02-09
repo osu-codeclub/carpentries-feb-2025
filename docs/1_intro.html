@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Software Carpentry / Horacio Lopez-Nicora">
 <meta name="dcterms.date" content="2025-02-11">
 
-<title>R Workshop - Introduction to R and RStudio</title>
+<title>Introduction to R and RStudio – R Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -71,17 +71,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-57476271c5f0467c372e20ff5d25630e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-846dca4dc7d087287339037938a7aa1c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -104,73 +113,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Workshop</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./0_setup.html" rel="" target="">
- <span class="menu-text">0: Installation</span></a>
+    <a class="nav-link" href="./0_setup.html"> 
+<span class="menu-text">0: Installation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./1_intro.html" rel="" target="" aria-current="page">
- <span class="menu-text">1: Intro</span></a>
+    <a class="nav-link active" href="./1_intro.html" aria-current="page"> 
+<span class="menu-text">1: Intro</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./2_data-structures.html" rel="" target="">
- <span class="menu-text">2: Data Structures</span></a>
+    <a class="nav-link" href="./2_data-structures.html"> 
+<span class="menu-text">2: Data Structures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./3_dplyr.html" rel="" target="">
- <span class="menu-text">3: Data Manipulation</span></a>
+    <a class="nav-link" href="./3_dplyr.html"> 
+<span class="menu-text">3: Data Manipulation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./4_ggplot.html" rel="" target="">
- <span class="menu-text">4: Data Visualization</span></a>
+    <a class="nav-link" href="./4_ggplot.html"> 
+<span class="menu-text">4: Data Visualization</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-to-learn-more" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-to-learn-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">To learn more</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-to-learn-more">    
         <li>
-    <a class="dropdown-item" href="https://osu-codeclub.github.io" rel="" target="">
- <span class="dropdown-text">OSU Code Club</span></a>
+    <a class="dropdown-item" href="https://osu-codeclub.github.io">
+ <span class="dropdown-text">OSU Code Club <i class="fa-solid fa-external-link" aria-label="external-link"></i></span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://library.osu.edu/events/version-control-with-git-virtual-event-0" rel="" target="">
- <span class="dropdown-text">Sister workshop on Version Control with Git</span></a>
+    <a class="dropdown-item" href="https://library.osu.edu/events/version-control-with-git-virtual-event-0">
+ <span class="dropdown-text">Sister workshop on Version Control with Git <i class="fa-solid fa-external-link" aria-label="external-link"></i></span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://library.osu.edu/researchcommons" rel="" target="">
- <span class="dropdown-text">OSU Research Commons</span></a>
+    <a class="dropdown-item" href="https://library.osu.edu/researchcommons">
+ <span class="dropdown-text">OSU Research Commons <i class="fa-solid fa-external-link" aria-label="external-link"></i></span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://carpentries.org" rel="" target="">
- <span class="dropdown-text">The Carpentries</span></a>
+    <a class="dropdown-item" href="https://carpentries.org">
+ <span class="dropdown-text">The Carpentries <i class="fa-solid fa-external-link" aria-label="external-link"></i></span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/osu-codeclub/carpentries-feb-2025">
             Source Code
@@ -184,7 +194,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
     </div>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -200,30 +209,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#why-use-r-and-r-studio" id="toc-why-use-r-and-r-studio" class="nav-link active" data-scroll-target="#why-use-r-and-r-studio"><span class="header-section-number">1</span> Why use R and R studio?</a></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">2</span> Overview</a></li>
   <li><a href="#orienting-to-rstudio-basic-layout" id="toc-orienting-to-rstudio-basic-layout" class="nav-link" data-scroll-target="#orienting-to-rstudio-basic-layout"><span class="header-section-number">3</span> Orienting to RStudio (basic layout)</a></li>
-  <li><a href="#r-script" id="toc-r-script" class="nav-link" data-scroll-target="#r-script"><span class="header-section-number">4</span> R script</a>
+  <li><a href="#r-scripts" id="toc-r-scripts" class="nav-link" data-scroll-target="#r-scripts"><span class="header-section-number">4</span> R scripts</a>
   <ul class="collapse">
   <li><a href="#why-use-a-script" id="toc-why-use-a-script" class="nav-link" data-scroll-target="#why-use-a-script"><span class="header-section-number">4.1</span> Why use a script?</a></li>
+  <li><a href="#sending-code-to-the-console" id="toc-sending-code-to-the-console" class="nav-link" data-scroll-target="#sending-code-to-the-console"><span class="header-section-number">4.2</span> Sending code to the console</a></li>
   </ul></li>
-  <li><a href="#sending-code-to-the-console" id="toc-sending-code-to-the-console" class="nav-link" data-scroll-target="#sending-code-to-the-console"><span class="header-section-number">5</span> Sending code to the console</a></li>
-  <li><a href="#working-directories" id="toc-working-directories" class="nav-link" data-scroll-target="#working-directories"><span class="header-section-number">6</span> Working directories</a>
+  <li><a href="#working-directories" id="toc-working-directories" class="nav-link" data-scroll-target="#working-directories"><span class="header-section-number">5</span> Working directories</a>
   <ul class="collapse">
-  <li><a href="#what-is-a-directory-and-a-working-directory" id="toc-what-is-a-directory-and-a-working-directory" class="nav-link" data-scroll-target="#what-is-a-directory-and-a-working-directory"><span class="header-section-number">6.1</span> What is a directory and a working directory?</a></li>
-  <li><a href="#find-your-working-directory" id="toc-find-your-working-directory" class="nav-link" data-scroll-target="#find-your-working-directory"><span class="header-section-number">6.2</span> Find your working directory</a></li>
-  <li><a href="#set-your-working-directory" id="toc-set-your-working-directory" class="nav-link" data-scroll-target="#set-your-working-directory"><span class="header-section-number">6.3</span> Set your working directory</a></li>
-  <li><a href="#avoid-all-working-directory-nonsense-with-a-.rproj" id="toc-avoid-all-working-directory-nonsense-with-a-.rproj" class="nav-link" data-scroll-target="#avoid-all-working-directory-nonsense-with-a-.rproj"><span class="header-section-number">6.4</span> Avoid all working directory nonsense with a <code>.RProj</code></a></li>
+  <li><a href="#what-is-a-directory-and-a-working-directory" id="toc-what-is-a-directory-and-a-working-directory" class="nav-link" data-scroll-target="#what-is-a-directory-and-a-working-directory"><span class="header-section-number">5.1</span> What is a directory and a working directory?</a></li>
+  <li><a href="#find-your-working-directory" id="toc-find-your-working-directory" class="nav-link" data-scroll-target="#find-your-working-directory"><span class="header-section-number">5.2</span> Find your working directory</a></li>
+  <li><a href="#set-your-working-directory" id="toc-set-your-working-directory" class="nav-link" data-scroll-target="#set-your-working-directory"><span class="header-section-number">5.3</span> Set your working directory</a></li>
+  <li><a href="#avoid-all-working-directory-nonsense-with-a-.rproj" id="toc-avoid-all-working-directory-nonsense-with-a-.rproj" class="nav-link" data-scroll-target="#avoid-all-working-directory-nonsense-with-a-.rproj"><span class="header-section-number">5.4</span> Avoid all working directory nonsense with a <code>.RProj</code></a></li>
   </ul></li>
-  <li><a href="#r-as-calculator" id="toc-r-as-calculator" class="nav-link" data-scroll-target="#r-as-calculator"><span class="header-section-number">7</span> R as calculator</a></li>
-  <li><a href="#the-r-prompt" id="toc-the-r-prompt" class="nav-link" data-scroll-target="#the-r-prompt"><span class="header-section-number">8</span> The R prompt</a></li>
-  <li><a href="#adding-comments-to-your-code" id="toc-adding-comments-to-your-code" class="nav-link" data-scroll-target="#adding-comments-to-your-code"><span class="header-section-number">9</span> Adding comments to your code</a></li>
-  <li><a href="#functions-in-r" id="toc-functions-in-r" class="nav-link" data-scroll-target="#functions-in-r"><span class="header-section-number">10</span> Functions in R</a></li>
-  <li><a href="#comparing-things" id="toc-comparing-things" class="nav-link" data-scroll-target="#comparing-things"><span class="header-section-number">11</span> Comparing things</a></li>
-  <li><a href="#r-objects" id="toc-r-objects" class="nav-link" data-scroll-target="#r-objects"><span class="header-section-number">12</span> R objects</a>
+  <li><a href="#r-as-calculator" id="toc-r-as-calculator" class="nav-link" data-scroll-target="#r-as-calculator"><span class="header-section-number">6</span> R as calculator</a></li>
+  <li><a href="#the-r-prompt" id="toc-the-r-prompt" class="nav-link" data-scroll-target="#the-r-prompt"><span class="header-section-number">7</span> The R prompt</a></li>
+  <li><a href="#adding-comments-to-your-code" id="toc-adding-comments-to-your-code" class="nav-link" data-scroll-target="#adding-comments-to-your-code"><span class="header-section-number">8</span> Adding comments to your code</a></li>
+  <li><a href="#functions-in-r" id="toc-functions-in-r" class="nav-link" data-scroll-target="#functions-in-r"><span class="header-section-number">9</span> Functions in R</a></li>
+  <li><a href="#comparing-things" id="toc-comparing-things" class="nav-link" data-scroll-target="#comparing-things"><span class="header-section-number">10</span> Comparing things</a></li>
+  <li><a href="#r-objects" id="toc-r-objects" class="nav-link" data-scroll-target="#r-objects"><span class="header-section-number">11</span> R objects</a>
   <ul class="collapse">
-  <li><a href="#assigning-stuff-to-objects" id="toc-assigning-stuff-to-objects" class="nav-link" data-scroll-target="#assigning-stuff-to-objects"><span class="header-section-number">12.1</span> Assigning stuff to objects</a></li>
-  <li><a href="#object-names" id="toc-object-names" class="nav-link" data-scroll-target="#object-names"><span class="header-section-number">12.2</span> Object names</a></li>
+  <li><a href="#assigning-stuff-to-objects" id="toc-assigning-stuff-to-objects" class="nav-link" data-scroll-target="#assigning-stuff-to-objects"><span class="header-section-number">11.1</span> Assigning stuff to objects</a></li>
+  <li><a href="#object-names" id="toc-object-names" class="nav-link" data-scroll-target="#object-names"><span class="header-section-number">11.2</span> Object names</a></li>
   </ul></li>
-  <li><a href="#managing-your-environment" id="toc-managing-your-environment" class="nav-link" data-scroll-target="#managing-your-environment"><span class="header-section-number">13</span> Managing your environment</a></li>
-  <li><a href="#r-help-help-and" id="toc-r-help-help-and" class="nav-link" data-scroll-target="#r-help-help-and"><span class="header-section-number">14</span> R Help: <code>help()</code> and <code>?</code></a></li>
+  <li><a href="#managing-your-environment" id="toc-managing-your-environment" class="nav-link" data-scroll-target="#managing-your-environment"><span class="header-section-number">12</span> Managing your environment</a></li>
+  <li><a href="#r-help-help-and" id="toc-r-help-help-and" class="nav-link" data-scroll-target="#r-help-help-and"><span class="header-section-number">13</span> R Help: <code>help()</code> and <code>?</code></a></li>
   </ul>
 </nav>
     </div>
@@ -257,7 +266,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <hr>
 <p><br></p>
@@ -281,10 +292,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Though we could use a spreadsheet in Microsoft Excel or Google Sheets to analyze our data, these tools have limitations in terms of flexibility and accessibility. Moreover, they make it difficult to share the steps involved in exploring and modifying raw data, which is essential for conducting “reproducible” research.</p>
 <p>Therefore, this lesson will guide you on how to start exploring your data using <a href="https://www.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a>. R is a program available for Windows, Mac, and Linux operating systems, and can be freely downloaded from the link provided above. To run R, all you need is the R program.</p>
 <p>Since R is open source, there are endlessly available free resource to learn how to do practically whatever you want on the internet.</p>
+<p><br></p>
 </section>
 <section id="overview" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="overview"><span class="header-section-number">2</span> Overview</h2>
 <p>We will begin with raw data, perform exploratory analyses, and learn how to plot results graphically. This example starts with a dataset from <a href="https://www.gapminder.org/">gapminder.org</a> containing population information for many countries through time. Can you read the data into R? Can you plot the population for Senegal? Can you calculate the average income for countries on the continent of Asia? <strong>By the end of these lessons you will be able to do things like plot the populations for all of these countries in under a minute!</strong></p>
+<p><br></p>
 </section>
 <section id="orienting-to-rstudio-basic-layout" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="orienting-to-rstudio-basic-layout"><span class="header-section-number">3</span> Orienting to RStudio (basic layout)</h2>
@@ -302,75 +315,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Bottom right:</strong> by default this shows the files in your working directory (more about that next). There are also additional tabs which show plots, packages, help, viewers, presentations but we won’t talk about those now.</li>
 </ul>
 <p>There is an RStudio cheatsheet for the IDE which is very useful, and you can find it <a href="https://rstudio.github.io/cheatsheets/html/rstudio-ide.html">here</a>.</p>
+<p><br></p>
 </section>
-<section id="r-script" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="r-script"><span class="header-section-number">4</span> R script</h2>
+<section id="r-scripts" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="r-scripts"><span class="header-section-number">4</span> R scripts</h2>
 <p>One of the panels contains a “Source Editor” pane, as in a Text Editor. Here, we can open and edit all sorts of text files — including R scripts. This quadrant will disappear if you have no files open:</p>
 <p><strong><em>Create and open a new R script by clicking File (top menu bar) &gt; New File &gt; R Script.</em></strong></p>
 <section id="why-use-a-script" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="why-use-a-script"><span class="header-section-number">4.1</span> Why use a script?</h3>
 <p>An R script is a text file that contains R code.</p>
-<p>Iit’s a good idea to write and save most of our code in scripts.</p>
+<p>It’s a good idea to write and save most of our code in scripts.</p>
 <p>This helps us <strong><em>keep track of what we’ve been doing</em></strong>, especially in the longer run, and to re-run our code after modifying input data or one of the lines of code.</p>
 </section>
-</section>
-<section id="sending-code-to-the-console" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="sending-code-to-the-console"><span class="header-section-number">5</span> Sending code to the console</h2>
+<section id="sending-code-to-the-console" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="sending-code-to-the-console"><span class="header-section-number">4.2</span> Sending code to the console</h3>
 <p>With the cursor on a line of code in the script, press <code>Ctrl</code> + <code>Enter</code> (or, on a Mac: <code>Cmd</code> + <code>Enter</code>).</p>
+<p><br></p>
 </section>
-<section id="working-directories" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="working-directories"><span class="header-section-number">6</span> Working directories</h2>
-<section id="what-is-a-directory-and-a-working-directory" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="what-is-a-directory-and-a-working-directory"><span class="header-section-number">6.1</span> What is a directory and a working directory?</h3>
+</section>
+<section id="working-directories" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="working-directories"><span class="header-section-number">5</span> Working directories</h2>
+<section id="what-is-a-directory-and-a-working-directory" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="what-is-a-directory-and-a-working-directory"><span class="header-section-number">5.1</span> What is a directory and a working directory?</h3>
 <p>Understanding directories and your working directory is crucial when coding. A directory can be thought of as a synonym for a folder, with each file contained within a directory. These folders have specific physical locations on your computer, known as paths. Directories are hierarchical and may differ slightly across various operating systems, such as Mac, Windows, and Linux. By using Finder (Mac) or File Explorer (Windows), you can navigate to different locations on your computer.</p>
 <p>Your working directory is exactly what it sounds like—it is the current location or path on your computer where you are actively working. This is important because, by default, your files will be read from, stored in, and saved to this location. Therefore, it is essential to know where your working directory is.</p>
 </section>
-<section id="find-your-working-directory" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="find-your-working-directory"><span class="header-section-number">6.2</span> Find your working directory</h3>
+<section id="find-your-working-directory" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="find-your-working-directory"><span class="header-section-number">5.2</span> Find your working directory</h3>
 <p>We can figure out where our working directory is by typing the function <code>getwd()</code> into the console. <strong>Note:</strong> I am using a Mac so you can see my path as forward slashes <code>/</code> while Windows machines will have backslashes <code>\</code>.</p>
 <p>You can also use the RStudio GUI to navigate to your working directory by going to the Files quadrant (bottom right), click the gear, and select <code>Go To Working Directory</code>.</p>
 </section>
-<section id="set-your-working-directory" class="level3" data-number="6.3">
-<h3 data-number="6.3" class="anchored" data-anchor-id="set-your-working-directory"><span class="header-section-number">6.3</span> Set your working directory</h3>
+<section id="set-your-working-directory" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="set-your-working-directory"><span class="header-section-number">5.3</span> Set your working directory</h3>
 <p>If your working directory is not where you want to store your files, you can change it. We can do that using the function <code>setwd()</code>.</p>
 <p><code>setwd("/this/should/be/your/working-directory/path")</code></p>
 <p>Alternatively, you can go to <strong>Session</strong> -&gt; <strong>Set Working DIrectory</strong> -&gt; <strong>Choose Directory…</strong>*</p>
 </section>
-<section id="avoid-all-working-directory-nonsense-with-a-.rproj" class="level3" data-number="6.4">
-<h3 data-number="6.4" class="anchored" data-anchor-id="avoid-all-working-directory-nonsense-with-a-.rproj"><span class="header-section-number">6.4</span> Avoid all working directory nonsense with a <code>.RProj</code></h3>
+<section id="avoid-all-working-directory-nonsense-with-a-.rproj" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="avoid-all-working-directory-nonsense-with-a-.rproj"><span class="header-section-number">5.4</span> Avoid all working directory nonsense with a <code>.RProj</code></h3>
+<p><br></p>
 </section>
 </section>
-<section id="r-as-calculator" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="r-as-calculator"><span class="header-section-number">7</span> R as calculator</h2>
+<section id="r-as-calculator" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="r-as-calculator"><span class="header-section-number">6</span> R as calculator</h2>
 <p>When using R as a calculator, the order of operations is the same as you would have learned back in school.</p>
 <p>From highest to lowest precedence:</p>
 <ul>
-<li>Parentheses: (, )</li>
-<li>Exponents: ^ or **</li>
-<li>Multiply: *</li>
-<li>Divide: /</li>
-<li>Add: +</li>
-<li>Subtract: -</li>
+<li>Parentheses: <code>(</code>, <code>)</code></li>
+<li>Exponents: <code>^</code> or <code>**</code></li>
+<li>Multiply: <code>*</code></li>
+<li>Divide: <code>/</code></li>
+<li>Add: <code>+</code></li>
+<li>Subtract: <code>-</code></li>
 </ul>
 </section>
-<section id="the-r-prompt" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="the-r-prompt"><span class="header-section-number">8</span> The R prompt</h2>
+<section id="the-r-prompt" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="the-r-prompt"><span class="header-section-number">7</span> The R prompt</h2>
 <p>The <code>&gt;</code> sign in your console is the R “prompt”. It indicates that R is ready for you to type something.</p>
 <p>When you are not seeing the <code>&gt;</code> prompt, R is either <strong>busy</strong> (because you asked it to do a longer-running computation) or <strong>waiting</strong> for you to complete an incomplete command.</p>
 <p>If you notice that your prompt turned into a <code>+</code>.</p>
 <p>To get out of this situation, one option is to try and finish the command (in this case, by typing another number) — but here, let’s practice another option: <strong>aborting the command by pressing <code>Esc</code>.</strong></p>
 </section>
-<section id="adding-comments-to-your-code" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="adding-comments-to-your-code"><span class="header-section-number">9</span> Adding comments to your code</h2>
+<section id="adding-comments-to-your-code" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="adding-comments-to-your-code"><span class="header-section-number">8</span> Adding comments to your code</h2>
 <p>You can use <code>#</code> signs to comment your code.</p>
 <ul>
 <li><p>Anything to the right of a <code>#</code> is ignored by R, meaning it won’t be executed.</p></li>
 <li><p>You can use <code>#</code> both at the start of a line (entire line is a comment) or anywhere in a line following code (rest of the line is a comment).</p></li>
 <li><p>In your R script, comments are formatted differently so you can clearly distinguish them from code.</p></li>
 </ul>
+<p><br></p>
 </section>
-<section id="functions-in-r" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="functions-in-r"><span class="header-section-number">10</span> Functions in R</h2>
+<section id="functions-in-r" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="functions-in-r"><span class="header-section-number">9</span> Functions in R</h2>
 <p>Almost everything is a function in R. Important functions that you have already used are <code>install.packages()</code> and <code>library()</code>. Let’s try it with <code>gapminder</code> and <code>tidyverse</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gapminder"</span>)</span>
@@ -380,8 +397,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Another important function is <code>c()</code>, which stands for <strong>combine</strong> or <strong>concatenate</strong>.</p>
-<p>Below other functions:</p>
-<table class="table">
+<p>Below are examples of some other R functions:</p>
+<table class="caption-top table">
 <colgroup>
 <col style="width: 45%">
 <col style="width: 54%">
@@ -437,10 +454,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </section>
-<section id="comparing-things" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="comparing-things"><span class="header-section-number">11</span> Comparing things</h2>
-<table class="table">
+<section id="comparing-things" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="comparing-things"><span class="header-section-number">10</span> Comparing things</h2>
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th><strong>Operator</strong></th>
@@ -481,11 +499,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<p><br></p>
 </section>
-<section id="r-objects" class="level2" data-number="12">
-<h2 data-number="12" class="anchored" data-anchor-id="r-objects"><span class="header-section-number">12</span> R objects</h2>
-<section id="assigning-stuff-to-objects" class="level3" data-number="12.1">
-<h3 data-number="12.1" class="anchored" data-anchor-id="assigning-stuff-to-objects"><span class="header-section-number">12.1</span> Assigning stuff to objects</h3>
+<section id="r-objects" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="r-objects"><span class="header-section-number">11</span> R objects</h2>
+<section id="assigning-stuff-to-objects" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="assigning-stuff-to-objects"><span class="header-section-number">11.1</span> Assigning stuff to objects</h3>
 <p>We can assign a value to an object with the <strong>assignment operator</strong> <code>&lt;-</code>. A few examples:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>length_cm <span class="ot">&lt;-</span> <span class="dv">250</span></span>
@@ -496,8 +515,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>length_in <span class="ot">&lt;-</span>  length_cm <span class="sc">/</span> conversion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="object-names" class="level3" data-number="12.2">
-<h3 data-number="12.2" class="anchored" data-anchor-id="object-names"><span class="header-section-number">12.2</span> Object names</h3>
+<section id="object-names" class="level3" data-number="11.2">
+<h3 data-number="11.2" class="anchored" data-anchor-id="object-names"><span class="header-section-number">11.2</span> Object names</h3>
 <p>Some pointers on object names:</p>
 <ul>
 <li><p>Because R is case sensitive, <code>length_inch</code> is different from <code>Length_Inch</code>!</p></li>
@@ -511,14 +530,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Object names can contain but cannot start with a number: <code>x2</code> is valid but <code>2x</code> is not.</p></li>
 <li><p>Make object names descriptive yet not too long — this is not always easy!</p></li>
 </ul>
+<p><br></p>
 </section>
 </section>
-<section id="managing-your-environment" class="level2" data-number="13">
-<h2 data-number="13" class="anchored" data-anchor-id="managing-your-environment"><span class="header-section-number">13</span> Managing your environment</h2>
+<section id="managing-your-environment" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="managing-your-environment"><span class="header-section-number">12</span> Managing your environment</h2>
 <p>Introduce <code>ls()</code> and <code>rm()</code></p>
+<p><br></p>
 </section>
-<section id="r-help-help-and" class="level2" data-number="14">
-<h2 data-number="14" class="anchored" data-anchor-id="r-help-help-and"><span class="header-section-number">14</span> R Help: <code>help()</code> and <code>?</code></h2>
+<section id="r-help-help-and" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="r-help-help-and"><span class="header-section-number">13</span> R Help: <code>help()</code> and <code>?</code></h2>
 <p>The <code>help()</code> function and <code>?</code> help operator in R offer access to documentation pages for R functions, data sets, and other objects. They provide access to both packages in the standard R distribution and contributed packages.</p>
 
 
@@ -560,18 +581,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -603,11 +613,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/osu-codeclub\.github\.io\/carpentries-feb-2025\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -617,8 +664,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -630,7 +686,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -674,6 +852,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -699,6 +878,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -759,6 +964,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

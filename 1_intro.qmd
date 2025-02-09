@@ -36,9 +36,13 @@ Therefore, this lesson will guide you on how to start exploring your data using 
 
 Since R is open source, there are endlessly available free resource to learn how to do practically whatever you want on the internet.
 
+<br>
+
 ## Overview
 
 We will begin with raw data, perform exploratory analyses, and learn how to plot results graphically. This example starts with a dataset from [gapminder.org](https://www.gapminder.org/) containing population information for many countries through time. Can you read the data into R? Can you plot the population for Senegal? Can you calculate the average income for countries on the continent of Asia? **By the end of these lessons you will be able to do things like plot the populations for all of these countries in under a minute!**
+
+<br>
 
 ## Orienting to RStudio (basic layout)
 
@@ -57,7 +61,9 @@ Once you open files, such as R scripts, an editor panel will also open in the to
 
 There is an RStudio cheatsheet for the IDE which is very useful, and you can find it [here](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html).
 
-## R script
+<br>
+
+## R scripts
 
 One of the panels contains a “Source Editor” pane, as in a Text Editor. Here, we can open and edit all sorts of text files — including R scripts. This quadrant will disappear if you have no files open:
 
@@ -67,13 +73,15 @@ One of the panels contains a “Source Editor” pane, as in a Text Editor. Here
 
 An R script is a text file that contains R code.
 
-Iit’s a good idea to write and save most of our code in scripts.
+It’s a good idea to write and save most of our code in scripts.
 
 This helps us ***keep track of what we’ve been doing***, especially in the longer run, and to re-run our code after modifying input data or one of the lines of code.
 
-## Sending code to the console
+### Sending code to the console
 
 With the cursor on a line of code in the script, press `Ctrl` + `Enter` (or, on a Mac: `Cmd` + `Enter`).
+
+<br>
 
 ## Working directories
 
@@ -99,18 +107,20 @@ Alternatively, you can go to **Session** -\> **Set Working DIrectory** -\> **Cho
 
 ### Avoid all working directory nonsense with a `.RProj`
 
+<br>
+
 ## R as calculator
 
 When using R as a calculator, the order of operations is the same as you would have learned back in school.
 
 From highest to lowest precedence:
 
--   Parentheses: (, )
--   Exponents: \^ or \*\*
--   Multiply: \*
--   Divide: /
--   Add: +
--   Subtract: -
+-   Parentheses: `(`, `)`
+-   Exponents: `^` or `**`
+-   Multiply: `*`
+-   Divide: `/`
+-   Add: `+`
+-   Subtract: `-`
 
 ## The R prompt
 
@@ -132,6 +142,8 @@ You can use `#` signs to comment your code.
 
 -   In your R script, comments are formatted differently so you can clearly distinguish them from code.
 
+<br>
+
 ## Functions in R
 
 Almost everything is a function in R. Important functions that you have already used are `install.packages()` and `library()`. Let's try it with `gapminder` and `tidyverse`:
@@ -146,7 +158,7 @@ library(tidyverse)
 
 Another important function is `c()`, which stands for **combine** or **concatenate**.
 
-Below other functions:
+Below are examples of some other R functions:
 
 |  |  |
 |---------------------------------|---------------------------------------|
@@ -163,6 +175,8 @@ Below other functions:
 | **log10(***x***)** | common logarithm |
 | **exp(***x***)** | e\^*x* |
 
+<br>
+
 ## Comparing things
 
 | **Operator** | **Description**          | **Example**            |
@@ -173,6 +187,8 @@ Below other functions:
 | !=           | Not equal to             | 10 != 10 returns FALSE |
 | \>=          | Greater than or equal to | 5 \>= 6 returns FALSE  |
 | \<=          | Less than or equal to    | 6 \<= 6 returns TRUE   |
+
+<br>
 
 ## R objects
 
@@ -208,9 +224,13 @@ Some pointers on object names:
 
 -   Make object names descriptive yet not too long — this is not always easy!
 
+<br>
+
 ## Managing your environment
 
 Introduce `ls()` and `rm()`
+
+<br>
 
 ## R Help: `help()` and `?`
 
