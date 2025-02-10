@@ -226,12 +226,6 @@ Some pointers on object names:
 
 <br>
 
-## Managing your environment
-
-Introduce `ls()` and `rm()`
-
-<br>
-
 ## R Help: `help()` and `?`
 
 The `help()` function and `?` help operator in R offer access to documentation pages for R functions, data sets, and other objects. They provide access to both packages in the standard R distribution and contributed packages.
