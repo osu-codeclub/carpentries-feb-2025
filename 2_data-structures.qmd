@@ -24,6 +24,7 @@ In this session, we will learn about R's **data structures** and **data types**.
   and character strings.
   Here, we'll talk about the 4 main data types:
   `character`, `integer`, `double`, and `logical.`
+  We'll also cover `factor`s, a construct related to the data types.
 
 #### Setting up
 
@@ -423,27 +424,57 @@ str(cats)
 ### {{< fa user-edit >}} Challenge 2 {-}
 
 What type of vector (if any) do you think each of the following will produce?
+Then, test your intuitions by running the commands.
 
-```{r, error=TRUE, eval=FALSE}
-typeof("TRUE")
-typeof(banana)
-typeof(2, 6, "3")
-```
-
-<details><summary>Click for the solutions</summary>
-
-1. `"TRUE"` is `character` because of the quotes around it.
-2. Recall the earlier example:
-   this returns an error because the object `banana` does not exist.
-3. It produces a `character` vector:
-   we'll talk about what happened here in the next section.
-
-```{r, error=TRUE}
+```{r, eval=FALSE}
 typeof("TRUE")
 typeof(banana)
 typeof(c(2, 6, "3"))
 ```
 
+Bonus / trick question:
+
+```{r, eval=FALSE}
+typeof(18, 3)
+```
+
+<details><summary>Click for the solutions</summary>
+
+```{r}
+typeof("TRUE")
+```
+
+1. `"TRUE"` is `character` (and not `logical`) because of the quotes around it.
+
+```{r, error=TRUE}
+typeof(banana)
+```
+
+2. Recall the earlier example:
+   this returns an error because the object `banana` does not exist.
+   Any unquoted string (that is not a special keyword like `TRUE` and `FALSE`)
+   is interpreted as a reference to an object in R.
+   
+```{r}
+typeof(c(2, 6, "3"))
+```
+
+3. We'll talk about why this produces a `character` vector in the next section.
+   
+```{r, error=TRUE}
+typeof(18, 3)
+```
+
+4. This produces an error because the `typeof()` only accepts a single argument,
+   which is an R object like a vector.
+   Because we did not wrap `18, 3` within `c()` (i.e. we did not use `c(18, 3)`),
+   we ended up passing **two** arguments to the function, and this resulted in
+   an error.
+   
+   If you guessed that it would have TWICE returned `integer` (or `double`),
+   you were on the right track: you couldn't have known that the function does
+   not accept multiple objects.
+   
 </details>
 :::
 
@@ -475,7 +506,7 @@ but can convert vectors at will using the `as.` group of functions:
 :::
 
 ```{r}
-as.double(c("0", "2", "4"))
+as.integer(c("0", "2", "4"))
 
 as.character(c(0, 2, 4))
 ```
@@ -489,6 +520,12 @@ as.double("kiwi")
 
 (`NA` is R's way of denoting _missing data_ --
 see [this bonus section](#missing-values-na) for more.)
+
+<br>
+
+------
+
+------
 
 <br>
 

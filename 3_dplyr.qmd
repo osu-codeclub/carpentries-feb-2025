@@ -398,7 +398,8 @@ gapminder |>
 ### {{< fa user-edit >}} Challenge 2 {-}
 
 **A:** Use `mutate()` to create a new column called `gdp_billion` that has the
-       absolute GDP (i.e., not relative to population size) in units of billions.
+       **absolute** GDP (i.e., not relative to population size) and does so
+       in **units of billions** (i.e., `2.3` would mean 2.3 billion).
 
 <details><summary>Click for the solution</summary>
 
@@ -503,6 +504,12 @@ lifeExp_bycountry |>
 ```
 </details>
 :::
+
+<br>
+
+------
+
+------
 
 <br>
 

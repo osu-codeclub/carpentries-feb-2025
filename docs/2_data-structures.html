@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this session, we will learn about R’s <strong>data structures</strong> and <strong>data types</strong>.</p>
 <ul>
 <li><p><strong>Data structures</strong> are the kinds of objects that R can store data in. Here, we will cover the two most common ones: <em>vectors</em> and <em>data frames</em>.</p></li>
-<li><p><strong>Data types</strong> are how R distinguishes between different kinds of data like numbers and character strings. Here, we’ll talk about the 4 main data types: <code>character</code>, <code>integer</code>, <code>double</code>, and <code>logical.</code></p></li>
+<li><p><strong>Data types</strong> are how R distinguishes between different kinds of data like numbers and character strings. Here, we’ll talk about the 4 main data types: <code>character</code>, <code>integer</code>, <code>double</code>, and <code>logical.</code> We’ll also cover <code>factor</code>s, a construct related to the data types.</p></li>
 </ul>
 </section>
 <section id="setting-up" class="level4">
@@ -685,35 +685,57 @@ Oddly, factors are technically not a data type <em>(Click to expand)</em>
 </section>
 <section id="challenge-2" class="level3 unnumbered exercise">
 <h3 class="unnumbered anchored" data-anchor-id="challenge-2"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Challenge 2</h3>
-<p>What type of vector (if any) do you think each of the following will produce?</p>
+<p>What type of vector (if any) do you think each of the following will produce? Then, test your intuitions by running the commands.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="st">"TRUE"</span>)</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(banana)</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="st">"3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="st">"3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Bonus / trick question:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">18</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details>
 <summary>
 Click for the solutions
 </summary>
-<ol type="1">
-<li><code>"TRUE"</code> is <code>character</code> because of the quotes around it.</li>
-<li>Recall the earlier example: this returns an error because the object <code>banana</code> does not exist.</li>
-<li>It produces a <code>character</code> vector: we’ll talk about what happened here in the next section.</li>
-</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="st">"TRUE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="st">"TRUE"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(banana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li><code>"TRUE"</code> is <code>character</code> (and not <code>logical</code>) because of the quotes around it.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(banana)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error: object 'banana' not found</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="st">"3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Recall the earlier example: this returns an error because the object <code>banana</code> does not exist. Any unquoted string (that is not a special keyword like <code>TRUE</code> and <code>FALSE</code>) is interpreted as a reference to an object in R.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="st">"3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
 </div>
+<ol start="3" type="1">
+<li>We’ll talk about why this produces a <code>character</code> vector in the next section.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">18</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in typeof(18, 3): unused argument (3)</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p>This produces an error because the <code>typeof()</code> only accepts a single argument, which is an R object like a vector. Because we did not wrap <code>18, 3</code> within <code>c()</code> (i.e.&nbsp;we did not use <code>c(18, 3)</code>), we ended up passing <strong>two</strong> arguments to the function, and this resulted in an error.</p>
+<p>If you guessed that it would have TWICE returned <code>integer</code> (or <code>double</code>), you were on the right track: you couldn’t have known that the function does not accept multiple objects.</p></li>
+</ol>
 </details>
 </section>
 <hr style="height:1pt; visibility:hidden;">
@@ -741,18 +763,18 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"2"</span>, <span class="st">"4"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"2"</span>, <span class="st">"4"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0 2 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "0" "2" "4"</code></pre>
 </div>
 </div>
 <p>As you may have guessed, though, not all type conversions are possible — for example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(<span class="st">"kiwi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(<span class="st">"kiwi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: NAs introduced by coercion</code></pre>
 </div>
@@ -761,6 +783,9 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 </div>
 </div>
 <p>(<code>NA</code> is R’s way of denoting <em>missing data</em> – see <a href="#missing-values-na">this bonus section</a> for more.)</p>
+<p><br></p>
+<hr>
+<hr>
 <p><br></p>
 </section>
 </section>
@@ -772,24 +797,24 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 <ul>
 <li><p>Change the first element to <code>30</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>myseq[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>myseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>myseq[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>myseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 30.0  6.2  6.4  6.6  6.8  7.0  7.2  7.4  7.6  7.8  8.0</code></pre>
 </div>
 </div></li>
 <li><p>Change the last element to <code>0</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>myseq[<span class="fu">length</span>(myseq)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>myseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>myseq[<span class="fu">length</span>(myseq)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>myseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 30.0  6.2  6.4  6.6  6.8  7.0  7.2  7.4  7.6  7.8  0.0</code></pre>
 </div>
 </div></li>
 <li><p>Change the second element to the mean value of the vector:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>myseq[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(myseq)</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>myseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>myseq[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(myseq)</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>myseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 30.000000  8.454545  6.400000  6.600000  6.800000  7.000000  7.200000
  [8]  7.400000  7.600000  7.800000  0.000000</code></pre>
@@ -802,18 +827,18 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 <h3 data-number="5.2" class="anchored" data-anchor-id="extracting-columns-from-a-data-frame"><span class="header-section-number">5.2</span> Extracting columns from a data frame</h3>
 <p>We can extract individual columns from a data frame using the <code>$</code> operator:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.1 5.0 3.2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>coat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>coat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "calico" "black"  "tabby" </code></pre>
 </div>
 </div>
 <p>This kind of operation will return a vector – and can be indexed as well:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>weight[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>weight[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
@@ -824,8 +849,8 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 <h3 data-number="5.3" class="anchored" data-anchor-id="more-on-the-logical-data-type"><span class="header-section-number">5.3</span> More on the <code>logical</code> data type</h3>
 <p>Let’s add a column to our <code>cats</code> data frame indicating whether each cat does or does not like string:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>likes_string <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>cats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>likes_string <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>cats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    name   coat weight likes_string
 1   Luna calico    2.1            1
@@ -836,15 +861,15 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 <p>So, <code>likes_string</code> is numeric, but the <code>1</code>s and <code>0</code>s actually represent <code>TRUE</code> and <code>FALSE</code>.</p>
 <p>We could instead use the <code>logical</code> data type here, by converting this column with the <code>as.logical()</code> function, which will turn 0’s into <code>FALSE</code> and everything else, including 1, to <code>TRUE</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(cats<span class="sc">$</span>likes_string)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(cats<span class="sc">$</span>likes_string)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE  TRUE</code></pre>
 </div>
 </div>
 <p>And to actually modify this column in the dataframe itself, we would do this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>likes_string <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(cats<span class="sc">$</span>likes_string)</span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>cats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>cats<span class="sc">$</span>likes_string <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(cats<span class="sc">$</span>likes_string)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>cats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    name   coat weight likes_string
 1   Luna calico    2.1         TRUE
@@ -855,7 +880,7 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 <hr style="height:1pt; visibility:hidden;">
 <p>You might think that <code>1</code>/<code>0</code> could be a handier coding than <code>TRUE</code>/<code>FALSE</code> because it may make it easier, for exmaple, to count the number of times something is true or false. But consider the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -868,23 +893,23 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 <p>R has a concept of missing data, which is important in statistical computing, as not all information/measurements are always available for each sample.</p>
 <p>In R, missing values are coded as <code>NA</code> (and like <code>TRUE</code>/<code>FALSE</code>, this is not a character string, so it is not quoted):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This vector will contain one missing value</span></span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>vector_NA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">7</span>)</span>
-<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>vector_NA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This vector will contain one missing value</span></span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>vector_NA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">7</span>)</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>vector_NA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1  3 NA  7</code></pre>
 </div>
 </div>
 <p>A key thing to be aware of with <code>NA</code>s is that many functions that operate on vectors will return <code>NA</code> if <strong>any</strong> element in the vector is <code>NA</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(vector_NA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(vector_NA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
 </div>
 <p>The way to get around this is by setting <code>na.rm = TRUE</code> in such functions, for example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(vector_NA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(vector_NA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11</code></pre>
 </div>
@@ -905,41 +930,41 @@ Try to use RStudio’s auto-complete functionality here: type “<code>as.</code
 <p>An important part of every data analysis is cleaning input data. Here, you will clean a cat data set that has an added observation with a problematic data entry.</p>
 <p>Start by creating the new data frame:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>cats_v2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Luna"</span>, <span class="st">"Thomas"</span>, <span class="st">"Daisy"</span>, <span class="st">"Oliver"</span>),</span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coat =</span> <span class="fu">c</span>(<span class="st">"calico"</span>, <span class="st">"black"</span>, <span class="st">"tabby"</span>, <span class="st">"tabby"</span>),</span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">5.0</span>, <span class="fl">3.2</span>, <span class="st">"2.3 or 2.4"</span>)</span>
-<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>cats_v2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Luna"</span>, <span class="st">"Thomas"</span>, <span class="st">"Daisy"</span>, <span class="st">"Oliver"</span>),</span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coat =</span> <span class="fu">c</span>(<span class="st">"calico"</span>, <span class="st">"black"</span>, <span class="st">"tabby"</span>, <span class="st">"tabby"</span>),</span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">5.0</span>, <span class="fl">3.2</span>, <span class="st">"2.3 or 2.4"</span>)</span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then move on to the tasks below, filling in the blanks (<code>_____</code>) and running the code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Explore the data frame,</span></span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    including with an overview that shows the columns' data types:</span></span>
-<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>cats_v2</span>
-<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="fu">_____</span>(cats_v2)</span>
-<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-6"><a href="#cb110-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. The "weight" column has the incorrect data type _____.</span></span>
-<span id="cb110-7"><a href="#cb110-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    The correct data type is: _____.</span></span>
-<span id="cb110-8"><a href="#cb110-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-9"><a href="#cb110-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Correct the 4th weight with the mean of the two given values,</span></span>
-<span id="cb110-10"><a href="#cb110-10" aria-hidden="true" tabindex="-1"></a><span class="co">#    then print the data frame to see the effect:</span></span>
-<span id="cb110-11"><a href="#cb110-11" aria-hidden="true" tabindex="-1"></a>cats_v2<span class="sc">$</span>weight[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fl">2.35</span></span>
-<span id="cb110-12"><a href="#cb110-12" aria-hidden="true" tabindex="-1"></a>cats_v2</span>
-<span id="cb110-13"><a href="#cb110-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-14"><a href="#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Convert the weight column to the right data type:</span></span>
-<span id="cb110-15"><a href="#cb110-15" aria-hidden="true" tabindex="-1"></a>cats_v2<span class="sc">$</span>weight <span class="ot">&lt;-</span> <span class="fu">_____</span>(cats_v2<span class="sc">$</span>weight)</span>
-<span id="cb110-16"><a href="#cb110-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-17"><a href="#cb110-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Calculate the mean weight of the cats:</span></span>
-<span id="cb110-18"><a href="#cb110-18" aria-hidden="true" tabindex="-1"></a>_____</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Explore the data frame,</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    including with an overview that shows the columns' data types:</span></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>cats_v2</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a><span class="fu">_____</span>(cats_v2)</span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. The "weight" column has the incorrect data type _____.</span></span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    The correct data type is: _____.</span></span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Correct the 4th weight with the mean of the two given values,</span></span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a><span class="co">#    then print the data frame to see the effect:</span></span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>cats_v2<span class="sc">$</span>weight[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fl">2.35</span></span>
+<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>cats_v2</span>
+<span id="cb113-13"><a href="#cb113-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-14"><a href="#cb113-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Convert the weight column to the right data type:</span></span>
+<span id="cb113-15"><a href="#cb113-15" aria-hidden="true" tabindex="-1"></a>cats_v2<span class="sc">$</span>weight <span class="ot">&lt;-</span> <span class="fu">_____</span>(cats_v2<span class="sc">$</span>weight)</span>
+<span id="cb113-16"><a href="#cb113-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-17"><a href="#cb113-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Calculate the mean weight of the cats:</span></span>
+<span id="cb113-18"><a href="#cb113-18" aria-hidden="true" tabindex="-1"></a>_____</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details>
 <summary>
 Click for the solution
 </summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Explore the data frame,</span></span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    including with an overview that shows the columns' data types:</span></span>
-<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>cats_v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Explore the data frame,</span></span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    including with an overview that shows the columns' data types:</span></span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>cats_v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    name   coat     weight
 1   Luna calico        2.1
@@ -947,20 +972,20 @@ Click for the solution
 3  Daisy  tabby        3.2
 4 Oliver  tabby 2.3 or 2.4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cats_v2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cats_v2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   4 obs. of  3 variables:
  $ name  : chr  "Luna" "Thomas" "Daisy" "Oliver"
  $ coat  : chr  "calico" "black" "tabby" "tabby"
  $ weight: chr  "2.1" "5" "3.2" "2.3 or 2.4"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. The "weight" column has the incorrect data type CHARACTER.</span></span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    The correct data type is: DOUBLE.</span></span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Correct the 4th weight data point with the mean of the two given values,</span></span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    then print the data frame to see the effect:</span></span>
-<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>cats_v2<span class="sc">$</span>weight[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fl">2.35</span></span>
-<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>cats_v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. The "weight" column has the incorrect data type CHARACTER.</span></span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    The correct data type is: DOUBLE.</span></span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Correct the 4th weight data point with the mean of the two given values,</span></span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    then print the data frame to see the effect:</span></span>
+<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>cats_v2<span class="sc">$</span>weight[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fl">2.35</span></span>
+<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>cats_v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    name   coat weight
 1   Luna calico    2.1
@@ -968,11 +993,11 @@ Click for the solution
 3  Daisy  tabby    3.2
 4 Oliver  tabby   2.35</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Convert the weight column to the right data type:</span></span>
-<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>cats_v2<span class="sc">$</span>weight <span class="ot">&lt;-</span> <span class="fu">as.double</span>(cats_v2<span class="sc">$</span>weight)</span>
-<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Calculate the mean weight of the cats:</span></span>
-<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(cats_v2<span class="sc">$</span>weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Convert the weight column to the right data type:</span></span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>cats_v2<span class="sc">$</span>weight <span class="ot">&lt;-</span> <span class="fu">as.double</span>(cats_v2<span class="sc">$</span>weight)</span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Calculate the mean weight of the cats:</span></span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(cats_v2<span class="sc">$</span>weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.1625</code></pre>
 </div>
