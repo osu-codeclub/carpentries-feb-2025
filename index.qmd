@@ -12,7 +12,7 @@ number-sections: false
 ### Schedule
 
 | Time | Instructor | Topic & link |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | Before starting | \- | [Install and set up R and RStudio](0_setup.qmd) |
 | 9:00 - 9:20 am | all | Pre-workshop survey (if only attending today), intro, logistics |
 | **9:20 - 10:15 am** | **Horacio** | **1:** [**Introduction to R and RStudio**](1_intro.qmd) |

@@ -32,12 +32,62 @@ To make it easier to keep track of what we do,
 we'll write our code in a script (and send it to the console from there) --
 here is how to create and save a new R script:
 
-1. _Open a new R script_ (Click the **`+`** symbol in toolbar at the top, then click `R Script`)
-   ^[Or Click `File` => `New file` => `R Script`]
+1. _Open a new R script_ (Click the **`+`** symbol in toolbar at the top, then click `R Script`)^[
+   Or Click `File` => `New file` => `R Script`.].
    
 2. _Save the script_ straight away as `data-structures.R` --
    you can save it anywhere you like, though it is probably best to save it in a
    folder specifically for this workshop.
+   
+3. If you want the section headers as comments in your script,
+   as in the script I am showing you now,
+   then copy-and-paste the following into your script:
+
+<details><summary>Section headers for your script _(Click to expand)_</summary>
+```{r}
+# 2 - Vectors ------------------------------------------------------------------
+# 2.1 - Single-element vectors and quoting
+
+# 2.2 - Multi-element vectors
+
+# 2.3 - Vectorization
+
+# Challenge 1
+# A. Start by making a vector x with the whole numbers 1 through 26.
+#    Then, subtract 0.5 from each element in the vector and save the result in vector y.
+#    Check your results by printing both vectors.
+
+# B. What do you think will be the result of the following operation?
+#    1:5 * 1:5
+
+# 2.4 - Exploring vectors
+
+# 2.5 - Extracting element from vectors
+
+# 3 - Data frames --------------------------------------------------------------
+# 3.1 - Data frame intro
+
+# 4 - Data types ---------------------------------------------------------------
+# 4.1 - R's main data types
+
+# 4.2 - Factors
+
+# 4.3 - A vector can only contain one data type
+
+# Challenge 2
+# What type of vector (if any) do you think each of the following will produce?
+# Try it out and see if you were right.
+#   typeof("TRUE")
+#   typeof(banana)
+#   typeof(c(2, 6, "3"))
+# Bonus / trick question:
+#   typeof(18, 3)
+
+# 4.4 - Automatic type coercion
+# 4.5 - Manual type conversion
+
+```
+</details>
 
 <br>
 
@@ -146,7 +196,7 @@ For more about vectorization, see
 from the Carpentries lesson that this material is based on.
 :::
 
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ::: exercise
 ### {{< fa user-edit >}} Challenge 1 {-}
@@ -174,6 +224,7 @@ y
 
 **B.** 
 What do you think will be the result of the following operation?
+Try it out and see if you were right.
 
 ```{r, eval=FALSE}
 1:5 * 1:5
@@ -194,9 +245,7 @@ in the second vector, and so on.
 </details>
 :::
 
--------
-
-<br>
+<hr style="height:1pt; visibility:hidden;" />
 
 ### Exploring vectors
 
@@ -424,7 +473,7 @@ str(cats)
 ### {{< fa user-edit >}} Challenge 2 {-}
 
 What type of vector (if any) do you think each of the following will produce?
-Then, test your intuitions by running the commands.
+Try it out and see if you were right.
 
 ```{r, eval=FALSE}
 typeof("TRUE")
