@@ -32,6 +32,93 @@ You can think about a ggplot as being composed of layers. You start with your da
 
 ## Looking at our data and getting set up
 
+### Setting up
+
+To make it easier to keep track of what we do,
+we'll write our code in a script (and send it to the console from there) --
+here is how to create and save a new R script:
+
+1. _Open a new R script_ (Click the **`+`** symbol in toolbar at the top, then click `R Script`)^[
+   Or Click `File` => `New file` => `R Script`.].
+   
+2. _Save the script_ straight away as `ggplot.R` --
+   you can save it anywhere you like, though it is probably best to save it in a
+   folder specifically for this workshop.
+   
+3. If you want the section headers as comments in your script,
+   as in the script I am showing you now,
+   then copy-and-paste the following into your script:
+
+<details><summary>Section headers for your script _(Click to expand)_</summary>
+```{r}
+# 2 Looking at our data and getting set up--------------------------------------
+
+
+
+# 3 Building our plot-----------------------------------------------------------
+
+
+
+## Challenge 1------------------------------------------------------------------
+# Modify the plot we’ve made so that you can see the relationship between life 
+# expectancy and year.
+
+
+
+## Challenge 2------------------------------------------------------------------
+# Modify to color your points by continent.
+
+
+# 4 Adding more layers----------------------------------------------------------
+
+
+
+## Challenge 3------------------------------------------------------------------
+# Change the order of the point and line layers - what happens?
+
+
+
+# 5 Transformations and statistics----------------------------------------------
+
+
+
+## Challenge 4A-----------------------------------------------------------------
+# Modify the color and the size of the points in the previous example. 
+# You’ll also probably want to make the linewidth less ridiculous.
+
+
+## Challenge 4B-----------------------------------------------------------------
+# Modify the plot from 4A so points are a different shape 
+# and colored by continent with new trendlines
+
+
+# 6 Multi-panel figures---------------------------------------------------------
+
+
+
+# 7 Modifying text--------------------------------------------------------------
+
+
+
+# 8 Adjusting theming-----------------------------------------------------------
+
+
+
+# 9 Exporting a plot------------------------------------------------------------
+
+
+
+## Challenge 5------------------------------------------------------------------
+
+# Create some box plots that compare life expectancy between the continents over 
+# the time period provided. Try and make your plot look nice, add labels 
+# and adjust the theme!
+
+```
+</details>
+
+<br>
+
 Before we plot, let's look at the data we will use for this session. We are going to use the same `gapminder` data from one hour ago.
 
 In case you don't have it up from before, let's load both the `tidyverse` and `gapminder` using the function `library()` so they are active.

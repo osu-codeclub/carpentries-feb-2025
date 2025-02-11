@@ -4,7 +4,6 @@ author: "Software Carpentry / Jelmer Poelstra"
 date: 2025-02-11
 editor_options: 
   chunk_output_type: console
-
 ---
 
 -----
